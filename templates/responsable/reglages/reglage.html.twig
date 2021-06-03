@@ -1,0 +1,177 @@
+<html>
+	<head>
+		<!-- Google Font: Source Sans Pro -->
+		<link
+		rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+		<!-- Font Awesome -->
+		<link
+		rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+		<!-- Ionicons -->
+		<link
+		rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+		<!-- Tempusdominus Bootstrap 4 -->
+		<link
+		rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+		<!-- iCheck -->
+		<link
+		rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+		<!-- JQVMap -->
+		<link
+		rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+		<!-- Theme style -->
+		<link
+		rel="stylesheet" href="dist/css/adminlte.min.css">
+		<!-- overlayScrollbars -->
+		<link
+		rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+		<!-- Daterange picker -->
+		<link
+		rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+		<!-- summernote -->
+		<link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+
+	</head>
+	<body>
+
+
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+
+						<i class="bi bi-gear-fill"></i>
+						<h1 class="m-0">Réglages</h1>
+						<h6>Configuration de votre boutique en ligne</h6>
+					</div>
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item">
+								<a href="#">Home</a>
+							</li>
+							<li class="breadcrumb-item active">Réglages</li>
+						</ol>
+					</div>
+
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+			<hr>
+		</div>
+
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="/reglage">Informations de la boutique</a>
+				<ul></ul>
+			</li>
+
+
+			<a class="nav-link" href="/vac">Vacances & fermetures</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link " href="#">Horaires d'ouvrerture/livraison</a>
+		</li>
+	</body>
+</html></ul><div class="card card-primary">
+<div class="card-header"></div>
+<!-- /.card-header -->
+<!-- form start -->
+{{form_start(form)}}
+<div class="card-body">
+	<div class="form-group">
+		<label for="Description courte">Nom</label>
+		{{form_widget(form.nom)}}
+		<!--textarea class="form-control" rows="3" placeholder="Enter Description courte"></textarea-->
+	</div>
+	<div class="form-group">
+		<label for="Description courte">Description</label>
+		{{form_widget(form.descrip)}}
+		<!--textarea class="form-control" rows="3" placeholder="Enter Description courte"></textarea-->
+	</div>
+	<div class="form-group">
+		<label for="Description longue">Type</label>
+		{{form_widget(form.type)}}
+		<!--textarea class="form-control" rows="3" placeholder="Enter Description longue"></textarea-->
+	</div>
+	<div class="form-group">
+		<label for="exampleInputEmail1">Email address</label>
+		{{form_widget(form.email)}}
+		<!--input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"-->
+	</div>
+	<div class="form-group">
+		<label for="Description courte">Tel</label>
+		{{form_widget(form.tel)}}
+		<!--textarea class="form-control" rows="3" placeholder="Enter Description courte"></textarea-->
+	</div>
+	<div class="form-group">
+		<label for="Capital">
+			Capital
+		</label>
+		{{form_widget(form.capital)}}
+		<!--input type="text" class="form-control" id="Capital" placeholder="Enter Capital"-->
+	</div>
+	<div class="form-group">
+		<label for="Siret">
+			Siret
+		</label>
+		{{form_widget(form.siret)}}
+		<!--input type="text" class="form-control" id="Siret" placeholder="Enter Siret"-->
+	</div>
+	<div class="form-group">
+		<label for="RCS">
+			RCS
+		</label>
+		{{form_widget(form.RCS)}}
+		<!--input type="text" class="form-control" id="RCS" placeholder="Enter RCS"-->
+	</div>
+	<div class="form-group">
+		<label for="Meta title">Adresse</label>
+		{{form_widget(form.adresse)}}
+		<!--input type="text" class="form-control" id="Meta title" placeholder="Meta title"-->
+	</div>
+	<div class="form-group">
+		<label for="Meta Description">
+			Code Postal
+		</label>
+		{{form_widget(form.code_postal)}}
+		<!--textarea class="form-control" rows="3" placeholder="Enter Meta Description"></textarea-->
+	</div>
+
+	<div class="form-group">
+		<label for="TVA">
+			Ville
+		</label>
+		{{form_widget(form.ville)}}
+		<!--input type="text" class="form-control" id="TVA" placeholder="Enter TVA"-->
+	</div>
+
+	<div class="form-group">
+		<label for="Code APE">
+			Pays
+		</label>
+		{{form_widget(form.pays)}}
+		<!--input type="text" class="form-control" id="Code APE" placeholder="Enter Code APE"-->
+	</div>
+
+	<div class="form-group">
+		<label for="Code APE">
+			Images
+		</label>
+		{{form_widget(form.photos)}}
+		<!--input type="text" class="form-control" id="Code APE" placeholder="Enter Code APE"-->
+	</div>
+</div>
+<!-- /.card-body -->
+
+<div class="card-footer">
+	<button type="submit" class="btn btn-primary">Submit</button>
+</div>
+{% for message in app.flashes('notice') %}
+	<div class="flash-notice">
+		{{ message }}
+	</div>
+{% endfor %}
+{{form_end(form)}}</div><!-- /.content-header --></body></html>

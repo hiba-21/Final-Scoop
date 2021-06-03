@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Clandar{% endblock %}
+
+{% block body %}
+    <h1>Edit Clandar</h1>
+
+    {{ include('clandar/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('clandar_index') }}">back to list</a>
+
+    {{ include('clandar/_delete_form.html.twig') }}
+{% endblock %}

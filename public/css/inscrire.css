@@ -1,0 +1,79 @@
+
+body{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+ /* background: url(/img/connecter.png) no-repeat;*/
+  background-size: cover;
+}
+.navbar-brand img {
+  transition: opacity 0.3s, visibiliy 0.3s;
+  max-width:60px;
+}
+
+#login-box{
+  float: none;
+  width: 280px;
+  position: relative;
+  
+  left: 40%;
+  color: white;
+}
+#login-box h1{
+  float: left;
+  font-size: 40px;
+  border-bottom: 6px solid #18bc9c;
+  margin-bottom: 0px;
+  padding: 13px ;
+}
+.textbox {
+  width: 100%;
+  overflow: hidden;
+  font-size: 20px;
+  padding: 8px 0;
+  margin: 8px 0;
+  border-bottom: 1px solid #18bc9c;
+}
+ 
+  .btn-primary{
+  margin-top: 2%;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #d6d2d2;
+  background-color: #283a5e;
+  border-radius: 30px 30px 30px 30px;
+  font-family: "Roboto", Sans-serif;
+  font-weight: 600;
+  user-select: none;}
+  #breadcrumbs {
+    display: block;
+    
+    z-index: 3;
+    color: #18bc9c;
+    letter-spacing: 0.5px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1% 10%;
+}
+#breadcrumbs a {
+    color: #283a5e;
+}
+form {
+  display: block;
+  margin-top: 0em;
+}
+#Div2 {
+  display: none;
+  position: relative;
+  text-align: center;
+  height: 400px;
+}
+label{
+  color: #283a5e;
+}
+.flash-notice{
+  color: #18bc9c;
+    float: right;
+    position: relative;
+    margin: 15px;
+}

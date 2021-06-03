@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clandar index{% endblock %}
+
+{% block body %}
+    <h1>Clandar index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Allday</th>
+                <th>Background_color</th>
+                <th>Border_color</th>
+                <th>Text_color</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for clandar in clandars %}
+            <tr>
+                <td>{{ clandar.id }}</td>
+                <td>{{ clandar.title }}</td>
+                <td>{{ clandar.start ? clandar.start|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ clandar.end ? clandar.end|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ clandar.allday ? 'Yes' : 'No' }}</td>
+                <td>{{ clandar.backgroundColor }}</td>
+                <td>{{ clandar.borderColor }}</td>
+                <td>{{ clandar.textColor }}</td>
+                <td>
+                    <a href="{{ path('clandar_show', {'id': clandar.id}) }}">show</a>
+                    <a href="{{ path('clandar_edit', {'id': clandar.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('clandar_new') }}">Create new</a>
+{% endblock %}

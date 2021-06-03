@@ -1,0 +1,102 @@
+
+<head>
+		<title>
+			{% block title %}Supplements
+
+			{% endblock %}
+		</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/css/axentix.min.css">
+	</head>
+	<body>
+{% block body %}
+<h1>Gérer les supplements</h1>
+<a href="{{path("ajout_supplement")}}" class="btn blue"-->
+Ajouter supplement</a><div class="responsive-table">
+<table class="table striped">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Nom</th>
+			<th>Prix</th>
+			<th>Image</th>
+			<th>Active</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for supplement  in supplements %}
+			<tr>
+				<td>{{supplement.id}}</td>
+				<td>{{supplement.nom}}</td>
+				<td>{{supplement.prix}}</td>
+					<td>
+									{% for img in supplement.imgs %}
+										<div>
+											<img src="{{ asset('/uploads/' ~ img.nom)}}" alt="Image" width="150">
+											
+										</div>
+									{% endfor %}
+								</td>
+				<td>{{supplement.Active}}
+                    <label class="form-switch mt-2">
+					off
+					<input type="checkbox" {{ (supplement.Active) ? 'checked' : ''}}
+					data-id="{{supplement.id}}">
+					<span class="slider"></span>
+					on
+					</label>
+
+				</td>
+				<td class="text-centre">
+				<a href="#" class="btn primary press modal-trigger"
+				 data-target="modal-delete" data-id="{{supplement.id}}"
+				 data-nom="{{supplement.nom}}">Supprimer</a>
+				</td>
+			
+			</tr>
+            {% endfor %}
+
+
+	</tbody>
+</table>
+<div class="modal shadow-1 white falling" id="modal-delete">
+  <div class="modal-header">Supprimer un supplement</div>
+
+  <div class="divider"></div>
+
+  <div class="modal-content">
+
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="modal-footer">
+    <a href="" class="btn red">valider</a>
+    <button data-target="modal-delete" class="ml-auto btn shadow-1 rounded-1 small primary modal-trigger">Close</button>
+  </div>
+</div> 
+{% endblock %}
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/js/axentix.min.js"></script>
+  <script>
+     window.onload = () => {
+		 let modal = new Axentix.Modal('#modal-delete');
+		 let Activer = document.querySelectorAll("[type=checkbox]")
+		 for (let bouton of Activer){
+			 bouton.addEventListener("click", function(){
+				 let xmlhttp = new XMLHttpRequest;
+				 xmlhttp.open("get", `/activer/${this.dataset.id}`)
+				 xmlhttp.send()
+			 })
+		 }
+		 let supprimer = document.querySelectorAll(".modal-trigger")
+		 for (let bouton of supprimer){
+			 bouton.addEventListener("click", function(){
+				 document.querySelector(".modal-footer a").href = `/supprimer/${this.dataset.id}`
+				 document.querySelector(".modal-content").innerText =`étes-vous sur de vouloir supprimer le supplement"${this.dataset.nom}"`
+			 })
+		 }
+	 }
+	 </script>
+	 {% endblock %}
+

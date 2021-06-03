@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VacanceFermeture index{% endblock %}
+
+{% block body %}
+    <h1>VacanceFermeture index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>All_day</th>
+                <th>Background_color</th>
+                <th>Border_color</th>
+                <th>Text_color</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vacance_fermeture in vacance_fermetures %}
+            <tr>
+                <td>{{ vacance_fermeture.id }}</td>
+                <td>{{ vacance_fermeture.title }}</td>
+                <td>{{ vacance_fermeture.start ? vacance_fermeture.start|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ vacance_fermeture.end ? vacance_fermeture.end|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ vacance_fermeture.allDay ? 'Yes' : 'No' }}</td>
+                <td>{{ vacance_fermeture.backgroundColor }}</td>
+                <td>{{ vacance_fermeture.borderColor }}</td>
+                <td>{{ vacance_fermeture.textColor }}</td>
+                <td>
+                    <a href="{{ path('vacance_fermeture_show', {'id': vacance_fermeture.id}) }}">show</a>
+                    <a href="{{ path('vacance_fermeture_edit', {'id': vacance_fermeture.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('vacance_fermeture_new') }}">Create new</a>
+{% endblock %}

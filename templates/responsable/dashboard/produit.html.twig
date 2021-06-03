@@ -1,0 +1,121 @@
+<html>
+	<head>
+		<title>
+			{% block title %}Gérer les produits
+
+			{% endblock %}
+		</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/css/axentix.min.css">
+	</head>
+	<body>
+		{% block body %}
+
+			<h1>Gérer les Produits</h1>
+			<a href="{{path("respo_Categories_ajoutProduit")}}" class="btn blue">
+				Ajouter un produit
+			</a>
+			<div class="responsive-table">
+				<table class="table striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nom</th>
+							<th>Description</th>
+							<th>Prix</th>
+							<th>Date</th>
+							<th>Image</th>
+							<th>Active</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for produit  in produits %}
+							<tr>
+								<td>{{produit.id}}</td>
+								<td>{{produit.nom}}</td>
+								<td>{{produit.description}}</td>
+								<td>{{produit.prix}}</td>
+								<td>{{produit.creaAt|date}}</td>
+								<td>
+									{% for image in produit.images %}
+										<div>
+											<img src="{{ asset('/uploads/' ~ image.nom)}}" alt="Image" width="150">
+											<a href="{{ path('respo_Categories_produit_delete_image', {'id': image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">
+												</a>
+										</div>
+									{% endfor %}
+								</td>
+
+								<td>
+									<label class="form-switch mt-2">
+
+										<input type="checkbox" {{(produit.active) ? 'checked' : ''}} data-id="{{produit.id}}">
+										<span class="slider"></span>
+
+									</label>
+								</td>
+								<td class="text-center">
+									<a href="{{path("respo_Categories_modifierProduit", {id: produit.id}) }}" class="btn blue">
+
+										Modifier</a>
+
+									<a href="#" class="btn rounded-1 primary press modal-trigger" data-target="modal-delete" data-id="{{produit.id}}" data-nom="{{produit.nom}}">Supprimer</a>
+
+								</td>
+
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<div class="modal shadow-1 white falling" id="modal-delete" data-ax="modal">
+					<div class="modal-header">Supprimer un produit</div>
+
+					<div class="divider"></div>
+
+					<div class="modal-content"></div>
+
+					<div class="divider"></div>
+
+					<div class="modal-footer ">
+
+						<a href="" class="btn red">Valider</a>
+						<button data-target="modal-delete" class="ml-auto btn shadow-1 rounded-1 small primary modal-trigger">Close</button>
+
+					</div>
+				</div>
+
+			</div>
+			<script src="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/js/axentix.min.js"></script>
+		{% endblock %}
+		{% block javascripts %}
+			<script>
+				window.onload = () => { let modal = new Axentix.Modal('#modal-delete');
+let activer = document.querySelectorAll("[type=checkbox]")
+for (let bouton of activer) {
+bouton.addEventListener("click", function () {
+let xmlhttp = new XMLHttpRequest;
+xmlhttp.open("get", `/respo/Categories/activer/${
+this.dataset.id
+}`)
+xmlhttp.send()
+})
+}
+
+let supprimer = document.querySelectorAll(".modal-trigger")
+for (let bouton of supprimer) {
+bouton.addEventListener("click", function () {
+document.querySelector(".modal-footer a").href = `/respo/Categories/supprimer/${
+this.dataset.id
+}`
+document.querySelector(".modal-content").innerText = `Etes-vous sur(e) de vouloir supprimer le produit "${
+this.dataset.nom
+}"`
+})
+}
+
+
+}
+			</script>
+		{% endblock %}
+	</body>
+</html>

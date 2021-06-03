@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}calendrier
+			{% endblock %}
+		</title>
+
+		{% block stylesheets %}
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+		{% endblock %}
+		{% block body %}
+			<div id="calendar"></div>
+		{% endblock %}
+		<script src="../plugins/jquery/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js" integrity="sha256-ekrJn2FeZaiUFq99QswpQCUTME/HxaDfX7R8INzKJGE=" crossorigin="anonymous"></script>
+		<script>
+			var Calendar = FullCalendar.Calendar;
+var calendarEl = document.getElementById('calendar');
+let calendar = new Calendar(calendarEl, {
+plugins: [
+dayGridPlugin, timeGridPlugin, listPlugin
+],
+initialView: 'dayGridMonth',
+headerToolbar: {
+left: 'prev,next today',
+center: 'title',
+right: 'dayGridMonth,timeGridWeek,listWeek'
+},
+events: {{ data|raw }},
+editable: true,
+eventResizableFromStart: true
+});
+calendar.render();
+		</script>
+	</head>
+</html></body></head></head></html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}calendrier
+			{% endblock %}
+		</title>
+		{# Run `composer require symfony/webpack-encore-bundle`
+																																																																																																																														           and uncomment the following Encore helpers to start using Symfony UX #}
+
+		{% block stylesheets %}
+			<link
+			rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+			<!-- fullCalendar -->
+			<link
+			rel="stylesheet" href="../plugins/fullcalendar/main.css">
+			<!-- Google Font: Source Sans Pro -->
+			<link
+			rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+			<!-- Font Awesome -->
+			<link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+
+
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+		{% endblock %}
+
+
+	</head>
+	<body>
+		{% block body %}
+
+			<div id="calendar"></div>
+			<div id="external-events">
+				<div class="external-event bg-warning">Vacance</div>
+				<div class="external-event bg-danger">Fermeture</div>
+			</div>
+		{% endblock %}
+		<script src="../plugins/jquery/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- jQuery UI -->
+		<script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
+		<!-- AdminLTE App -->
+		<script src="../dist/js/adminlte.min.js"></script>
+		<!-- fullCalendar 2.2.5 -->
+		<script src="../plugins/moment/moment.min.js"></script>
+		<script src="../plugins/fullcalendar/main.js"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script src="../dist/js/demo.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js" integrity="sha256-ekrJn2FeZaiUFq99QswpQCUTME/HxaDfX7R8INzKJGE=" crossorigin="anonymous"></script>
+		{% block javascripts %}
+			<script>
+
+				var date = new Date()
+var d = date.getDate(),
+m = date.getMonth(),
+y = date.getFullYear()
+
+var Calendar = FullCalendar.Calendar;
+var Draggable = FullCalendar.Draggable;
+
+var containerEl = document.getElementById('external-events');
+
+var calendarEl = document.getElementById('calendar');
+var calendar = new Calendar(calendarEl, {
+initialView: 'dayGridMonth',
+locale: 'fr',
+headerToolbar: {
+left: 'prev,next today',
+center: 'title',
+right: 'dayGridMonth,timeGridWeek,timeGridDay'
+},
+
+themeSystem: 'bootstrap',
+// Random default events
+events: {{ data|raw }},
+selectOverlap: function (event) {
+return event.rendering === 'background';
+},
+dateClick: function (info) {
+alert('Clicked on: ' + info.dateStr);
+alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+alert('Current view: ' + info.view.type);
+// change the day's background color just for fun
+info.dayEl.style.backgroundColor = 'red';
+},
+eventClick: function (info) {
+alert('Event: ' + info.event.title);
+alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+alert('View: ' + info.view.type);
+
+// change the border color just for fun
+info.el.style.borderColor = 'red';
+},
+
+editable: true,
+eventResizableFromStart: true,
+selectable: true,
+droppable: true, // this allows things to be dropped onto the calendar !!!
+
+})
+calendar.on('eventChange', (e) => {
+let url = '/api/${e.event.id}/edit'
+let donnees = {
+"title": e.event.title,
+"start": e.event.start,
+"end": e.event.end,
+"backgroundColor": e.event.backgroundColor,
+"borderColor": e.event.borderColor,
+"textColor": e.event.textColor,
+"allDay": e.event.allDay yt
+}
+let xm = new XMLHttpRequest();
+xm.open("PUT", url),
+xm.send(JSON.stringify(donnees));
+})
+calendar.render();
+new Draggable(containerEl, {
+itemSelector: '.external-event',
+eventData: function (events) {
+return {
+title: events.innerText,
+backgroundColor: window.getComputedStyle(events, null).getPropertyValue('background-color'),
+borderColor: window.getComputedStyle(events, null).getPropertyValue('background-color'),
+textColor: window.getComputedStyle(events, null).getPropertyValue('color')
+};
+}
+});
+			</script>
+
+		{% endblock %}
+	</body>
+</html>

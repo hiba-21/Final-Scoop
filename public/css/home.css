@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple');
+html,
+body{
+    background-color: #fff;
+    color: rgb(117, 113, 113);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 200;
+    height: 10vh;
+    margin: 0;
+   }
+.banner{
+    background:url(/img/acceuill.jpg) no-repeat;
+    background-size: 100%;
+    background-position: center, center;
+    position: relative;
+    object-fit: contain;
+    height: 600px;
+    width: auto;
+}
+.title{
+    font-size: 50px;
+    margin-top: 0;
+    color: white;
+}
+
+.navbar-brand img {
+    transition: opacity 0.3s, visibiliy 0.3s;
+    max-width:60px;
+}
+.split-text{
+    box-sizing: border-box;
+    font-size: 50px;
+    color: #666;
+    font-family: Georgia, serif;
+    text-align: left;
+    font-family: 'Poppins';
+    font-weight: 300;
+    line-height: 1.2em;
+    font-size: 45px;
+    visibility: visible;
+    margin-top: 50px;
+}
+.btn .btn-solid{
+    background-color: #70c1b3;
+    border-color: #70c1b3;
+    color: rgb(255, 255, 255);
+    border-radius: 50em;
+}
+.textwidget .custom-html-widget a {
+        color: #666;
+        text-decoration: none;
+        background-color: transparent;
+}
+.bottom{
+    margin: 40px auto;
+}
+.buttom1{
+    margin: 35px auto;
+}
+
+    .btn-solid {
+       
+        font-size: 16px;
+        text-transform: uppercase;
+        color: #d6d2d2;
+        background-color: #283a5e;
+        border-radius: 30px 30px 30px 30px;
+        font-family: "Roboto", Sans-serif;
+        font-weight: 600;
+        user-select: none;
+        margin-left: 40%;}
+        .btn-solid1 {
+       
+            font-size: 16px;
+            text-transform: uppercase;
+            color: #d6d2d2;
+            background-color: #283a5e;
+            border-radius: 30px 30px 30px 30px;
+            font-family: "Roboto", Sans-serif;
+            font-weight: 600;
+            user-select: none;
+            margin-left: 40%;}
+    .btn-solid .btn-txt{
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+    color:white;
+    margin: 57px
+
+    }
+    .btn-solid1 .btn-txt{
+        white-space: pre;
+        align-items: flex-start;
+        text-align: center;
+        color:white;
+        margin: 10px
+    
+        }
+    .content{
+        margin: auto;
+        padding-left: 20%;
+    padding-top: 25%;
+    }
+    .service{
+        background: linear-gradient(#ffcdca, white);
+        font-family: 'Josefin Slab', serif;
+        margin-top: 50px;
+
+       
+        
+      }
+     .service h1{
+        font-family: "Roboto", Sans-serif;
+        font-size: 52px;
+        margin-bottom: 0px;
+        text-align: center;
+      }
+      .contenue{
+        display: flex;
+        text-align: center;
+        width: auto;
+        justify-content: center;
+        background: #fff;
+ 
+
+  padding: 50px;
+  line-height: 20px;
+  color: #8e8b8b;
+  position: relative;
+
+      }
+      .taha{
+        border-style: solid;
+        border-image: 
+          linear-gradient(
+            to bottom, 
+            #283a5e, 
+            rgba(218, 209, 209, 0)
+          ) 1 100%;
+      
+        margin-right: 50px;
+        margin-left: 50px;
+        margin-bottom: 10px;
+        background-color: white;
+        border-style: solid;
+      }
+    span {
+        position: relative;
+
+    }

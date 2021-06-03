@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit VacanceFermeture{% endblock %}
+
+{% block body %}
+    <h1>Edit VacanceFermeture</h1>
+
+    {{ include('vacance_fermeture/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('vacance_fermeture_index') }}">back to list</a>
+
+    {{ include('vacance_fermeture/_delete_form.html.twig') }}
+{% endblock %}

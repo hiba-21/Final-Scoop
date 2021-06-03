@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New VacanceFermeture
+{% endblock %}
+
+{% block body %}
+	<h1>Create new VacanceFermeture</h1>
+
+	{{ include('vacance_fermeture/_form.html.twig') }}
+
+	<a href="{{ path('vacance_fermeture_index') }}">back to list</a>
+{% endblock %}

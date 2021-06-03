@@ -1,0 +1,288 @@
+<html>
+	<head>
+		<!-- Google Font: Source Sans Pro -->
+		<link
+		rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+		<!-- Font Awesome -->
+		<link
+		rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+		<!-- fullCalendar -->
+		<link
+		rel="stylesheet" href="../plugins/fullcalendar/main.css">
+		<!-- Theme style -->
+		<link rel="stylesheet" href="../dist/css/adminlte.min.css">
+
+	</head>
+	<body>
+
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+
+						<i class="bi bi-gear-fill"></i>
+						<h1 class="m-0">Réglages</h1>
+						<h6>Configuration de votre boutique en ligne</h6>
+					</div>
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item">
+								<a href="#">Home</a>
+							</li>
+							<li class="breadcrumb-item active">Réglages</li>
+						</ol>
+					</div>
+
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+			<hr>
+		</div>
+
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a class="nav-link" aria-current="page" href="/reglage">Informations de la boutique</a>
+				<ul></ul>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link active" href="/vac">Vacances & Fermetures
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Vacances & fermetures</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link " href="#">Horaires d'ouvrerture/livraison</a>
+			</li>
+		</ul>
+
+		<!-- /.card-header -->
+		<!-- form start -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="sticky-top mb-3">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title">Draggable Events</h4>
+							</div>
+							<div
+								class="card-body">
+								<!-- the events -->
+								<div id="external-events">
+
+									<div class="external-event bg-warning">Vacance</div>
+									<div class="external-event bg-danger">Fermeture</div>
+
+								</div>
+							</div>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title">Create Event</h3>
+							</div>
+							{{ form_start(form) }}
+
+							<div class="card-body">
+								<div
+									class="btn-group" style="width: 100%; margin-bottom: 10px;">
+									<!--ul class="fc-color-picker" id="color-chooser">
+																																																																																																																					
+																																																																																																																															<li>
+																																																																																																																																<a class="text-warning" href="#">
+																																																																																																																																	<i class="fas fa-square"></i>
+																																																																																																																																</a>
+																																																																																																																															</li>
+																																																																																																																					
+																																																																																																																															<li>
+																																																																																																																																<a class="text-danger" href="#">
+																																																																																																																																	<i class="fas fa-square"></i>
+																																																																																																																																</a>
+																																																																																																																															</li>
+																																																																																																																					
+																																																																																																																														</ul-->
+									{{ form_widget(form.background_color) }}
+									{{ form_widget(form.border_color) }}
+									{{ form_widget(form.text_color) }}
+								</div>
+								<!-- /btn-group -->
+								<!--div class="input-group">
+																																																																																	<input id="new-event" type="text" class="form-control" placeholder="Event Title">
+																																																																								
+																																																																																	<div class="input-group-append">
+																																																																																		<button id="add-new-event" type="button" class="btn btn-primary">Ajouter</button>
+																																																																																	</div>
+																																																																																	<!-- /btn-group >
+																																																																																</div-->
+								<!-- /input-group -->
+								{{ form_widget(form) }}
+									<button class="btn"> {{ button_label|default('Save') }}</button>
+								{{ form_end(form) }}
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- /.col -->
+				<div class="col-md-9">
+					<div class="card card-primary">
+						<div
+							class="card-body p-0">
+							<!-- THE CALENDAR -->
+							<pre >
+								{{ dump(data) }}
+							</pre>
+							<div id="calendar"></div>
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<!-- /.card -->
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container-fluid -->
+
+
+		<script src="../plugins/jquery/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- jQuery UI -->
+		<script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
+		<!-- AdminLTE App -->
+		<script src="../dist/js/adminlte.min.js"></script>
+		<!-- fullCalendar 2.2.5 -->
+		<script src="../plugins/moment/moment.min.js"></script>
+		<script src="../plugins/fullcalendar/main.js"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script src="../dist/js/demo.js"></script>
+		<!-- Page specific script -->
+		<script>
+			$(function () { /* initialize the external events
+       -----------------------------------------------------------------*/
+function ini_events(ele) {
+ele.each(function () {
+
+// create an Event Object (https://fullcalendar.io/docs/event-object)
+// it doesn't need to have a start or end
+var eventObject = {
+title: $.trim($(this).text()) // use the element's text as the event title
+}
+
+// store the Event Object in the DOM element so we can get to it later
+$(this).data('eventObject', eventObject)
+
+// make the event draggable using jQuery UI
+$(this).draggable({
+zIndex: 1070, revert: true, // will cause the event to go back to its
+revertDuration: 0 // original position after the drag
+})
+
+})
+}
+
+ini_events($('#external-events div.external-event'))
+
+/* initialize the calendar
+       -----------------------------------------------------------------*/
+// Date for the calendar events (dummy data)
+var date = new Date()
+var d = date.getDate(),
+m = date.getMonth(),
+y = date.getFullYear()
+
+var Calendar = FullCalendar.Calendar;
+var Draggable = FullCalendar.Draggable;
+
+var containerEl = document.getElementById('external-events');
+
+var calendarEl = document.getElementById('calendar');
+
+// initialize the external events
+// -----------------------------------------------------------------
+
+new Draggable(containerEl, {
+itemSelector: '.external-event',
+eventData: function (eventEl) {
+return {
+title: eventEl.innerText,
+backgroundColor: window.getComputedStyle(eventEl, null).getPropertyValue('background-color'),
+borderColor: window.getComputedStyle(eventEl, null).getPropertyValue('background-color'),
+textColor: window.getComputedStyle(eventEl, null).getPropertyValue('color')
+};
+}
+});
+
+var calendar = new Calendar(calendarEl, {
+initialView: 'timeGridWeek',
+locale: 'fr',
+headerToolbar: {
+left: 'prev,next today',
+center: 'title',
+right: 'dayGridMonth,timeGridWeek,timeGridDay'
+},
+themeSystem: 'bootstrap',
+// Random default events
+events: [
+{
+title: 'All Day Event',
+start: new Date(y, m, 1),
+backgroundColor: '#f56954', // red
+borderColor: '#f56954', // red
+allDay: true
+},
+
+],
+editable: true,
+droppable: true, // this allows things to be dropped onto the calendar !!!
+
+});
+
+calendar.render();
+// $('#calendar').fullCalendar()
+
+/* ADDING EVENTS */
+var currColor = '#3c8dbc'
+// Red by default
+// Color chooser button
+$('#color-chooser > li > a').click(function (e) {
+e.preventDefault()
+// Save color
+currColor = $(this).css('color')
+// Add color effect to button
+$('#add-new-event').css({'background-color': currColor, 'border-color': currColor})
+})
+$('#add-new-event').click(function (e) {
+e.preventDefault()
+// Get value and make sure it is not null
+var val = $('#new-event').val()
+if (val.length == 0) {
+return
+}
+
+// Create events
+var event = $('<div />')
+event.css({'background-color': currColor, 'border-color': currColor, 'color': '#fff'}).addClass('external-event')
+event.text(val)
+$('#external-events').prepend(event)
+
+// Add draggable funtionality
+ini_events(event)
+
+// Remove event from text input
+$('#new-event').val('')
+})
+})
+		</script>
+		<!-- /.content-header -->
+	</body>
+
+</html>

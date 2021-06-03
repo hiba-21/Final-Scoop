@@ -1,0 +1,102 @@
+<html>
+	<head>
+		<title>
+			{% block title %}Gérer les catégories
+
+			{% endblock %}
+		</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/css/axentix.min.css">
+	</head>
+	<body>
+		{% block body %}
+			<h1>Gérer les catégories</h1>
+			<a href="{{path("respo_categories_ajout")}}" class="btn blue">
+				Ajouter une catégorie</a>
+			<div class="responsive-table">
+				<table class="table striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nom</th>
+							<th>Parent</th>
+							<th>Couleur</th>
+							<th>Active</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for categorie  in categories %}
+							<tr>
+								<td>{{categorie.id}}</td>
+								<td>{{categorie.nom}}</td>
+								<td>{{categorie.parents}}</td>
+								<td>{{categorie.couleur}}</td>
+								<td>
+									<label class="form-switch mt-2">
+
+										<input type="checkbox" {{(categorie.active) ? 'checked' : ''}} data-id="{{categorie.id}}">
+										<span class="slider"></span>
+
+									</label>
+								</td>
+
+								<td class="text-center">
+									<a href="{{path("respo_Categories_modifier", {id: categorie.id}) }}" class="btn blue">
+										Modifier</a>
+									<a href="#" class="btn rounded-1 primary press modal-trigger" data-target="modal-delete-cat" data-id="{{categorie.id}}" data-nom="{{categorie.nom}}">Supprimer</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+
+				</table>
+				<div class="modal shadow-1 white falling" id="modal-delete-cat" data-ax="modal">
+					<div class="modal-header">Supprimer une categorie</div>
+
+					<div class="divider"></div>
+
+					<div class="modal-content"></div>
+
+					<div class="divider"></div>
+
+					<div class="modal-footer">
+						<a href="" class="btn red">Valider</a>
+						<button data-target="modal-delete-cat" class="ml-auto btn shadow-1 rounded-1 small primary modal-trigger">Close</button>
+					</div>
+				</div>
+			</div>
+	<script src="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/js/axentix.min.js"></script>
+		{% endblock %}
+		{% block javascripts %}
+			<script>
+				window.onload = () => {
+
+let modal = new Axentix.Modal('#modal-delete-cat');
+let activer = document.querySelectorAll("[type=checkbox]")
+for (let bouton of activer) {
+bouton.addEventListener("click", function () {
+let xmlhttp = new XMLHttpRequest;
+xmlhttp.open("get", `/respo/Categories/activerCat/${
+this.dataset.id
+}`)
+xmlhttp.send()
+})
+}
+
+let supprimerCat = document.querySelectorAll(".modal-trigger")
+for (let bouton of supprimerCat) {
+bouton.addEventListener("click", function () {
+document.querySelector(".modal-footer a").href = `/respo/Categories/supprimerCat/${
+this.dataset.id
+}`
+document.querySelector(".modal-content").innerText = `Etes-vous sur(e) de vouloir supprimer la categorie "${
+this.dataset.nom
+}"`
+})
+}
+
+}
+			</script>
+		{% endblock %}
+	</body>
+</html>

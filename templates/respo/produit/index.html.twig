@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<title>
+			{% block title %}Gérer les catégories
+
+			{% endblock %}
+		</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/css/axentix.min.css">
+	</head>
+	<body>
+		{% block body %}
+		</body>
+	</html>
+</div>
+<h1>Gérer les Produits</h1>
+<!--a href="{{path("respo_produit_ajout")}}" class="btn blue"-->
+Ajouter un produit</a><div class="responsive-table">
+<table class="table striped">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Nom</th>
+			<th>Description</th>
+			<th>Prix</th>
+			<th>Date</th>
+			<th>Active</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for produit  in produits %}
+			<tr>
+				<td>{{produit.id}}</td>
+				<td>{{produit.nom}}</td>
+				<td>{{produit.description}}</td>
+				<td>{{produit.prix}}</td>
+				<td>{{produit.creaAt|date}}</td>
+				<td>{{produit.active}}</td>
+				<td
+					class="text-center"><!--a href="{{path("respo_produit_modifier", {id: produit.id}) }}" class="btn blue">
+																			Modifier</a-->
+				</td>
+			</tr>
+		{% endfor %}
+
+
+	</tbody>
+</table></div><script src="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/js/axentix.min.js"></script>{% endblock %}</body></html></body></html>

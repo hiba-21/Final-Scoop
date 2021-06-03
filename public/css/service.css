@@ -1,0 +1,82 @@
+.navbar-brand img {
+  transition: opacity 0.3s, visibiliy 0.3s;
+  max-width:60px;
+}
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@1,700&family=Lobster&display=swap');
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+.body{
+background: #fae8e7;
+font-family: 'Josefin Slab', serif;
+
+}
+#breadcrumbs {
+display: block;
+background-color: #fae8e7;
+z-index: 3;
+color: #18bc9c;
+letter-spacing: 0.5px;
+width: 100%;
+margin: 0 auto;
+padding: 1% 10%;
+}
+#breadcrumbs a {
+color: #283a5e;
+background-color: #fae8e7;
+}
+
+.service h1{
+font-family: 'Lobster', cursive;
+font-size: 52px;
+margin-bottom: 60px;
+text-align: center;
+}
+.article{
+display: flex;
+text-align: center;
+width: auto;
+justify-content: center;
+}
+.article .text{
+background: #fff;
+margin: 5px;
+margin-bottom: 50px;
+width: 300px;
+padding: 20px;
+line-height: 20px;
+color: #8e8b8b;
+position: relative;
+}
+.article .text h3{
+color: #f5a1dc;
+font-size: 26px;
+margin-top: 50px;
+}
+.article .text p.role{
+color:#ccc;
+font-size: 12px;
+text-transform: uppercase;
+ margin: 12px 0;  
+}
+.article .text .img{
+width: 100px;
+height: 100px;
+position: absolute;
+
+
+}
+.article .text .img img{
+border-radius: 50%;
+width: 100px;
+height: 100px;
+position: absolute;
+top: -50%;
+left: 120%;
+transform: translateX(-50%);
+background: #fff;
+padding: 5px;
+
+}
