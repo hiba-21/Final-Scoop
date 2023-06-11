@@ -41,10 +41,17 @@ class Contact1
     private $tel;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=10)
      */
     private $message;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $Problem = [];
+
+
 
     public function getId(): ?int
     {
@@ -107,6 +114,18 @@ class Contact1
     public function setMessage(string $message): self
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    public function getProblem(): ?array
+    {
+        return $this->Problem;
+    }
+
+    public function setProblem(array $Problem): self
+    {
+        $this->Problem = $Problem;
 
         return $this;
     }

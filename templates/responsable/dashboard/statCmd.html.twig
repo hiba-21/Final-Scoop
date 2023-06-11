@@ -1,0 +1,56 @@
+<html>
+	<body>
+
+		<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<h5 class="card-title">Statistique de commands</h5>
+				</div>
+				<!-- /.card-header -->
+				<div class="card-body">
+
+					<div class="col-md-8">
+						<div class="chart">
+							<canvas id="panniers" height="50" style="height: 50px;" color="white"></canvas>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		<!-- /.card -->
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js" integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script>
+			let panniers = document.querySelector("#panniers")
+let CmdGraph = new Chart(panniers, {
+type: "doughnut",
+data: {
+labels: {{ dates|raw }},
+datasets: [
+{
+label: "répartition des commandes",
+data: {{ cmdcount|raw }},
+backgroundColor: [
+"#dc3545",
+"#17a2b8",
+'Orange',
+'Yellow',
+'Green',
+'Blue'
+],
+color: "white"
+}
+]
+}
+})
+		</script>
+		<script src="plugins/jquery/jquery.min.js"></script><!-- jQuery UI 1.11.4 --><script src="plugins/jquery-ui/jquery-ui.min.js"></script><!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip --><script>
+			$.widget.bridge('uibutton', $.ui.button)
+		</script><!-- Bootstrap 4 --><script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script><!-- overlayScrollbars --><script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script><!-- AdminLTE App --><script src="dist/js/adminlte.js"></script><!-- AdminLTE for demo purposes --><script src="dist/js/demo.js"></script>
+	</body>
+</html>

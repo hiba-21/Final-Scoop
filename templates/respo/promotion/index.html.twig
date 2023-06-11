@@ -1,0 +1,114 @@
+<html>
+	<head>
+		<title>
+			{% block title %}Gérer les Promotions
+
+			{% endblock %}
+		</title>
+		<link rel="stylesheet" href="/css/categorie.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/css/axentix.min.css">
+	</head>
+	<body>
+		{% block body %}
+
+			<h1>Gérer les Promotions</h1>
+			<div class="col">
+				<a href="{{path("promotion_ajout_promotion")}}" class="btn blue">
+					Ajouter un promotion
+				</a>
+			</div>
+			<div class="responsive-table">
+				<table class="table striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nom de la régle</th>
+							<th>Nom sur la boutique</th>
+							<th>Répétition</th>
+							<th>Quantité</th>
+							<th>Type</th>
+							<th>Montant
+							</th>
+							<th>Choix
+							</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for promo  in promotions %}
+							<tr>
+								<td>{{promo.id}}</td>
+								<td>{{promo.firstName}}</td>
+								<td>{{promo.lastNAme}}</td>
+								<td>{{promo.repetition}}</td>
+								<td>{{promo.quantite}}</td>
+								<td>{{promo.type}}</td>
+
+								<td>{{promo.Montant}}</td>
+								<td></td>
+								<td class="text-center">
+
+									<a href="{{path("promotion_modifier", {id: promo.id}) }}" class="btn blue" id="edit">
+
+										Modifier</a>
+									<a href="#" class="btn rounded-1 primary press modal-trigger" data-target="modal-delete" data-id="{{promo.id}}" data-nom="{{promo.firstName}}" id="supprimer">Supprimer</a>
+
+								</td>
+
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<div class="modal shadow-1 white falling" id="modal-delete" data-ax="modal">
+					<div class="modal-header">Supprimer un promotion</div>
+
+					<div class="divider"></div>
+
+					<div class="modal-content"></div>
+
+					<div class="divider"></div>
+
+					<div class="modal-footer ">
+
+						<a href="" class="btn red">Valider</a>
+						<button data-target="modal-delete" class="ml-auto btn shadow-1 rounded-1 small primary modal-trigger">Close</button>
+
+					</div>
+				</div>
+
+			</div>
+			<script src="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/js/axentix.min.js"></script>
+		{% endblock %}
+		{% block javascripts %}
+			<script>
+				window.onload = () => {
+let modal = new Axentix.Modal('#modal-delete');
+let activer = document.querySelectorAll("[type=checkbox]")
+for (let bouton of activer) {
+bouton.addEventListener("click", function () {
+let xmlhttp = new XMLHttpRequest;
+xmlhttp.open("get", `/respo/Categories/activer/${
+this.dataset.id
+}`)
+xmlhttp.send()
+})
+}
+
+let supprimer = document.querySelectorAll(".modal-trigger")
+for (let bouton of supprimer) {
+bouton.addEventListener("click", function () {
+document.querySelector(".modal-footer a").href = `/promotion/supprimer/${
+this.dataset.id
+}`
+document.querySelector(".modal-content").innerText = `Etes-vous sur(e) de vouloir supprimer le promotion "${
+this.dataset.firstName
+}"`
+})
+}
+
+
+}
+			</script>
+		{% endblock %}
+	</body>
+</html>

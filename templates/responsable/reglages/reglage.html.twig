@@ -63,115 +63,139 @@
 		</div>
 
 		<ul class="nav nav-tabs">
+			<li></li>
 			<li class="nav-item">
 				<a class="nav-link active" aria-current="page" href="/reglage">Informations de la boutique</a>
-				<ul></ul>
+
+			</li>
+			<li class="nav-item">
+				<a class="nav-link active" href="/vac">Vacances & Fermetures
+				</a>
 			</li>
 
 
-			<a class="nav-link" href="/vac">Vacances & fermetures</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link " href="#">Horaires d'ouvrerture/livraison</a>
-		</li>
+		</ul>
 	</body>
-</html></ul><div class="card card-primary">
-<div class="card-header"></div>
-<!-- /.card-header -->
-<!-- form start -->
-{{form_start(form)}}
-<div class="card-body">
-	<div class="form-group">
-		<label for="Description courte">Nom</label>
-		{{form_widget(form.nom)}}
-		<!--textarea class="form-control" rows="3" placeholder="Enter Description courte"></textarea-->
-	</div>
-	<div class="form-group">
-		<label for="Description courte">Description</label>
-		{{form_widget(form.descrip)}}
-		<!--textarea class="form-control" rows="3" placeholder="Enter Description courte"></textarea-->
-	</div>
-	<div class="form-group">
-		<label for="Description longue">Type</label>
-		{{form_widget(form.type)}}
-		<!--textarea class="form-control" rows="3" placeholder="Enter Description longue"></textarea-->
-	</div>
-	<div class="form-group">
-		<label for="exampleInputEmail1">Email address</label>
-		{{form_widget(form.email)}}
-		<!--input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"-->
-	</div>
-	<div class="form-group">
-		<label for="Description courte">Tel</label>
-		{{form_widget(form.tel)}}
-		<!--textarea class="form-control" rows="3" placeholder="Enter Description courte"></textarea-->
-	</div>
-	<div class="form-group">
-		<label for="Capital">
-			Capital
-		</label>
-		{{form_widget(form.capital)}}
-		<!--input type="text" class="form-control" id="Capital" placeholder="Enter Capital"-->
-	</div>
-	<div class="form-group">
-		<label for="Siret">
-			Siret
-		</label>
-		{{form_widget(form.siret)}}
-		<!--input type="text" class="form-control" id="Siret" placeholder="Enter Siret"-->
-	</div>
-	<div class="form-group">
-		<label for="RCS">
-			RCS
-		</label>
-		{{form_widget(form.RCS)}}
-		<!--input type="text" class="form-control" id="RCS" placeholder="Enter RCS"-->
-	</div>
-	<div class="form-group">
-		<label for="Meta title">Adresse</label>
-		{{form_widget(form.adresse)}}
-		<!--input type="text" class="form-control" id="Meta title" placeholder="Meta title"-->
-	</div>
-	<div class="form-group">
-		<label for="Meta Description">
-			Code Postal
-		</label>
-		{{form_widget(form.code_postal)}}
-		<!--textarea class="form-control" rows="3" placeholder="Enter Meta Description"></textarea-->
-	</div>
+</html>
+<div class="card card-primary">
+	<div class="card-header"></div>
+	<!-- /.card-header -->
+	<!-- form start -->
+	{{form_start(form)}}
+	<div class="card-body">
+		<div class="form-group">
+			<label for="Description courte">Nom</label>
+			{{form_widget(form.nom)}}
+			<!--textarea class="form-control" rows="3" placeholder="Enter Description courte"></textarea-->
+		</div>
+		<div class="form-group">
+			<label for="Description courte">Description</label>
+			{{form_widget(form.descrip)}}
+			<!--textarea class="form-control" rows="3" placeholder="Enter Description courte"></textarea-->
+		</div>
+		<div class="form-group">
+			<label for="Description longue">Type</label>
+			{{form_widget(form.type)}}
+			<!--textarea class="form-control" rows="3" placeholder="Enter Description longue"></textarea-->
+		</div>
+		<div class="form-group">
+			<label for="exampleInputEmail1">Email address</label>
+			{{form_widget(form.email)}}
+			<!--input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"-->
+		</div>
+		<div class="form-group">
+			<label for="Description courte">Tel</label>
+			{{form_widget(form.tel)}}
+			<!--textarea class="form-control" rows="3" placeholder="Enter Description courte"></textarea-->
+		</div>
+		<div class="form-group">
+			<label for="Capital">
+				Capital
+			</label>
+			{{form_widget(form.capital)}}
+			<!--input type="text" class="form-control" id="Capital" placeholder="Enter Capital"-->
+		</div>
+		<div class="form-group">
+			<label for="Siret">
+				Siret
+			</label>
+			{{form_widget(form.siret)}}
+			<!--input type="text" class="form-control" id="Siret" placeholder="Enter Siret"-->
+		</div>
+		<div class="form-group">
+			<label for="RCS">
+				RCS
+			</label>
+			{{form_widget(form.RCS)}}
+			<!--input type="text" class="form-control" id="RCS" placeholder="Enter RCS"-->
+		</div>
+		<div class="form-group">
+			<label for="Meta title">Adresse</label>
+			{{form_widget(form.adresse)}}
+			<!--input type="text" class="form-control" id="Meta title" placeholder="Meta title"-->
+		</div>
+		<div class="form-group">
+			<label for="Meta Description">
+				Code Postal
+			</label>
+			{{form_widget(form.code_postal)}}
+			<!--textarea class="form-control" rows="3" placeholder="Enter Meta Description"></textarea-->
+		</div>
 
-	<div class="form-group">
-		<label for="TVA">
-			Ville
-		</label>
-		{{form_widget(form.ville)}}
-		<!--input type="text" class="form-control" id="TVA" placeholder="Enter TVA"-->
-	</div>
+		<div class="form-group">
+			<label for="TVA">
+				Ville
+			</label>
+			{{form_widget(form.ville)}}
+			<!--input type="text" class="form-control" id="TVA" placeholder="Enter TVA"-->
+		</div>
 
-	<div class="form-group">
-		<label for="Code APE">
-			Pays
-		</label>
-		{{form_widget(form.pays)}}
-		<!--input type="text" class="form-control" id="Code APE" placeholder="Enter Code APE"-->
-	</div>
+		<div class="form-group">
+			<label for="Code APE">
+				Pays
+			</label>
+			{{form_widget(form.pays)}}
+			<!--input type="text" class="form-control" id="Code APE" placeholder="Enter Code APE"-->
+		</div>
 
-	<div class="form-group">
-		<label for="Code APE">
-			Images
-		</label>
-		{{form_widget(form.photos)}}
-		<!--input type="text" class="form-control" id="Code APE" placeholder="Enter Code APE"-->
+		<div class="form-group">
+			<label for="Code APE">
+				Images
+			</label>
+			{{form_widget(form.photos)}}
+			<!--input type="text" class="form-control" id="Code APE" placeholder="Enter Code APE"-->
+		</div>
 	</div>
-</div>
-<!-- /.card-body -->
+	<!-- /.card-body -->
 
-<div class="card-footer">
-	<button type="submit" class="btn btn-primary">Submit</button>
-</div>
-{% for message in app.flashes('notice') %}
-	<div class="flash-notice">
-		{{ message }}
+	<div class="card-footer">
+		<button type="submit" class="btn btn-primary">Submit</button>
 	</div>
-{% endfor %}
-{{form_end(form)}}</div><!-- /.content-header --></body></html>
+	{% for message in app.flashes('notice') %}
+		<div class="flash-notice">
+			{{ message }}
+		</div>
+	{% endfor %}
+	{% if not form.vars.valid %}
+		<ul
+			class="alert alert-danger">
+			{# on affiche en premier les erreurs globales (cas classiques) #}
+			{% for error in form.vars.errors %}
+				<li>{{error.message}}</li>
+			{% endfor %}
+			{# ainsi que les erreurs concernant chaque champs #}
+			{% for child in form.children %}
+				{# si le champ à des erreur #}
+				{% if child.vars.errors is defined %}
+					{% for error in child.vars.errors %}
+						<li>{{child.vars.label}}
+
+							{{error.message}}
+						</li>
+						{# on ajoute le label du champ devant l'erreur pour plus de précisions. #}
+					{% endfor %}
+				{% endif %}
+			{% endfor %}
+		</ul>
+	{% endif %}
+	{{form_end(form)}}</div><!-- /.content-header --></body></html>

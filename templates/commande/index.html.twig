@@ -1,0 +1,78 @@
+<head>
+	<link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="/css/insclient.css">
+	<link rel="stylesheet" href="/css/footer.css">
+</head>
+{% block body %}
+	<body>
+		<div id="login-box">
+			<div id="name">
+				<div class="main">
+					<h1>Passer Commande</h1>
+
+					{{ form_start(commandeForm) }}
+
+					<div class="textbox">
+						{{ form_row(commandeForm.Nom) }}
+					</div>
+					<div class="textbox">
+						{{ form_row(commandeForm.adresse) }}
+					</div>
+
+					<div class="textbox">
+						{{ form_row(commandeForm.numero) }}
+					</div>
+
+					<div></div>
+					<div class="panier">
+						{% if items | length >0 %}
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Produit</th>
+										<th>Prix</th>
+										<th>Quantité</th>
+										<th>Total</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for item in items %}
+										<tr>
+											<td>{{item.produit.nom}}</td>
+											<td>{{item.produit.prix}}</td>
+											<td>{{item.quantity}}</td>
+											<td>{{item.produit.prix * item.quantity}}</td>
+										{% endfor %}
+									</tbody>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="3" class="text-right">Total :
+										</td>
+										<td>{{total}}</td>
+										<td></td>
+									</tr>
+								</tfoot>
+
+							</table>
+						{% else %}
+							<p>Surprise c'est vide !</p>
+
+						{% endif %}
+
+
+					</div>
+
+
+					<div class="btn">
+						<button type="submit" class="btn btn-primary">Enregister</button>
+					</div>
+					{{ form_end(commandeForm) }}
+				</div>
+			</div>
+
+		</div>
+
+	</body>
+{% endblock %}

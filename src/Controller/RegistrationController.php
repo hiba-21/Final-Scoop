@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Users;
 use App\Form\RegistrationFormType;
+use App\Form\EditProfilType;
 use App\Security\EmailVerifier;
 use App\Security\UsersAuthenticator;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -92,5 +93,49 @@ class RegistrationController extends AbstractController
         $this->addFlash('success', 'Your email address has been verified.');
 
         return $this->redirectToRoute('temp');
+    }
+    /**
+     * @Route("/profil/edit", name="profil_edit")
+     */
+    public function editProfil(Request $request): Response
+    {
+        $user = $this->getUser();
+        $form = $this->createForm(EditProfilType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            $this->addFlash('message', 'Profil mis àjour');
+            return $this->redirectToRoute("temp");
+        }
+
+
+        return $this->render('/home/EditProfile.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+    /**
+     * @Route("/profil/editpass", name="profil_editpass")
+     */
+    public function editPass(Request $request, UserPasswordEncoderInterface $userPasswordEncoder): Response
+    {
+        if ($request->isMethod('POST')) {
+            $em = $this->getDoctrine()->getManager();
+            $user = $this->getUser();
+            //verefication si 2 password sont egale
+            if ($request->request->get('pass') == $request->request->get('pass2')) {
+                $user->setPassword($userPasswordEncoder->encodePassword($user, $request->request->get('pass')));
+                $em->flush();
+                $this->addFlash('message', 'Mot de passe mis à jour avec succès ');
+                return $this->redirectToRoute("temp");
+            } else {
+                $this->addFlash('error', 'les deux mots de passe ne sont pas identiques ');
+            }
+        }
+
+
+        return $this->render('/home/Edit password.html.twig', []);
     }
 }

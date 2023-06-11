@@ -4,17 +4,24 @@ namespace App\Controller;
 
 use App\Entity\Images;
 use App\Entity\InfoBoutique;
+use App\Entity\Pannier;
 use App\Entity\Photo;
 use App\Entity\Produit;
 use App\Entity\VacanceFermeture;
 use App\Form\InfoBoutiqueType;
+use App\Entity\Commande;
+use App\Form\CommandeType;
+use App\Form\PannierType;
 use App\Form\VacanceFermetureType;
 use App\Repository\ClandarRepository;
 use App\Repository\ProduitsRepository;
 use App\Repository\VacanceFermetureRepository;
+use App\Repository\PannierRepository;
 use Doctrine\Persistence\ObjectManager;
 use phpDocumentor\Reflection\Types\This;
 use App\Repository\CategoriesRepository;
+use App\Repository\ClientsRepository;
+use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,20 +54,8 @@ class HomeController extends AbstractController
     {
         return $this->render('home/service.html.twig');
     }
-    /**
-     * @Route("/avis", name="avis")
-     */
-    public function avis()
-    {
-        return $this->render('home/avis1.html.twig');
-    }
-    /**
-     * @Route("/contact", name="contact")
-     */
-    public function contact()
-    {
-        return $this->render('home/contact1.html.twig');
-    }
+
+
 
     /**
      * @Route("/inscrire", name="inscrire")
@@ -82,11 +77,51 @@ class HomeController extends AbstractController
     /**
      * @Route("/temp", name="temp")
      */
-    public function temp(ProduitsRepository $produitsRepository, CategoriesRepository $categoriesRepository)
+    public function temp(ClientsRepository $ClientsRepository, ProduitsRepository $produitsRepository, CategoriesRepository $categoriesRepository, UsersRepository $usersRepository)
     {
+        $Clients = $ClientsRepository->countByDate();
+
+        $dates = [];
+        $clientcount = [];
+
+
+
+        foreach ($Clients as $Client) {
+
+            $dates[] = $Client['dateClients'];
+            $clientcount[] = $Client['count'];
+        }
         return $this->render('responsable/temp.html.twig', [
             'produits' => $produitsRepository->findBy(['active' => true], ['id' => 'DESC']),
             'categories' => $categoriesRepository->findBy(['active' => true], ['id' => 'DESC']),
+            'dates' => json_encode($dates),
+            'clientcount' => json_encode($clientcount)
+
+        ]);
+    }
+    /**
+     * @Route("/stat", name="stat")
+     */
+    public function stat(PannierRepository $pannierRepository, ProduitsRepository $produitsRepository, CategoriesRepository $categoriesRepository, UsersRepository $usersRepository)
+    {
+        $panniers = $pannierRepository->countByDate();
+
+        $dates = [];
+        $cmdcount = [];
+
+
+
+        foreach ($panniers as $pannier) {
+
+            $dates[] = $pannier['dateCmd'];
+            $cmdcount[] = $pannier['count'];
+        }
+        return $this->render('responsable/dashboard/statCmd.html.twig', [
+            'produits' => $produitsRepository->findBy(['active' => true], ['id' => 'DESC']),
+            'categories' => $categoriesRepository->findBy(['active' => true], ['id' => 'DESC']),
+            'dates' => json_encode($dates),
+            'cmdcount' => json_encode($cmdcount)
+
         ]);
     }
     /**
@@ -99,23 +134,61 @@ class HomeController extends AbstractController
     /**
      * @Route("/utilisateurs", name="utilisateurs")
      */
-    public function utilisateurs()
+    public function utilisateurs(ClientsRepository $ClientsRepository, ProduitsRepository $produitsRepository, CategoriesRepository $categoriesRepository, UsersRepository $usersRepository)
     {
-        return $this->render('responsable/dashboard/utilisateurs.html.twig');
+        $Clients = $ClientsRepository->countByDate();
+
+        $dates = [];
+        $clientcount = [];
+
+
+
+        foreach ($Clients as $Client) {
+
+            $dates[] = $Client['dateClients'];
+            $clientcount[] = $Client['count'];
+        }
+        return $this->render('responsable/dashboard/utilisateurs.html.twig', [
+            'produits' => $produitsRepository->findBy(['active' => true], ['id' => 'DESC']),
+            'categories' => $categoriesRepository->findBy(['active' => true], ['id' => 'DESC']),
+            'dates' => json_encode($dates),
+            'clientcount' => json_encode($clientcount)
+
+        ]);
     }
     /**
      * @Route("/categories", name="categories")
      */
-    public function categories()
+    public function categories(ProduitsRepository $produitsRepository, CategoriesRepository $categoriesRepository, UsersRepository $usersRepository)
     {
-        return $this->render('responsable/dashboard/categories.html.twig');
+        $produits = $produitsRepository->countByDate();
+
+        $dates = [];
+        $produitcount = [];
+
+
+
+        foreach ($produits as $produit) {
+
+            $dates[] = $produit['dateProduit'];
+            $produitcount[] = $produit['count'];
+        }
+        return $this->render('responsable/dashboard/categories.html.twig', [
+            'produits' => $produitsRepository->findBy(['active' => true], ['id' => 'DESC']),
+            'categories' => $categoriesRepository->findBy(['active' => true], ['id' => 'DESC']),
+            'dates' => json_encode($dates),
+            'produitcount' => json_encode($produitcount)
+
+        ]);
     }
     /**
      * @Route("/commands", name="commands")
      */
-    public function commands()
+    public function commands(PannierRepository $pannierRepository)
     {
-        return $this->render('responsable/dashboard/commands.html.twig');
+        return $this->render('responsable/dashboard/commands.html.twig', [
+            'cmd' => $pannierRepository->findAll()
+        ]);
     }
     /**
      * @Route("/paiement", name="paiement")
@@ -124,13 +197,7 @@ class HomeController extends AbstractController
     {
         return $this->render('responsable/dashboard/methodeDePaiement.html.twig');
     }
-    /**
-     * @Route("/promotion", name="promotion")
-     */
-    public function promotion()
-    {
-        return $this->render('responsable/dashboard/promotion.html.twig');
-    }
+
     /**
      * @Route("/platforme", name="platforme")
      */
@@ -258,10 +325,12 @@ class HomeController extends AbstractController
     /**
      * @Route("/panier", name="panier")
      */
-    public function panier(SessionInterface $session, ProduitsRepository $produitsRepository)
+    public function panier(SessionInterface $session, ProduitsRepository $produitsRepository, Request $request): Response
     {
+        $panierBase = new Pannier();
         $panier = $session->get('panier', []);
         $panierWithData = [];
+
         foreach ($panier as $id => $quantity) {
             $panierWithData[] = [
                 'produit' => $produitsRepository->find($id),
@@ -273,18 +342,22 @@ class HomeController extends AbstractController
             $totalItem = $item['produit']->getPrix() * $item['quantity'];
             $total += $totalItem;
         }
-
         return $this->render('client/panier.html.twig', [
             'items' => $panierWithData,
-            'total' => $total
+            'total' => $total,
+            'panier' => $panierBase,
+
+
         ]);
     }
+
     /**
      * @Route("/panier/add/{id}", name="panier_add")
      */
-    public function add($id, SessionInterface $session)
+    public function add($id, SessionInterface $session, ProduitsRepository $produitsRepository)
     {
         $panier = $session->get('panier', []);
+
         if (!empty($panier[$id])) {
             $panier[$id]++;
         } else {
@@ -292,7 +365,41 @@ class HomeController extends AbstractController
         }
 
         $session->set('panier', $panier);
+
+
         return $this->redirectToRoute("panier");
+    }
+
+
+    /**
+     * @Route("/Valider/add", name="Valider_add")
+     */
+    public function Valider(SessionInterface $session, ProduitsRepository $produitsRepository, ClientsRepository $clientsRepository)
+    {
+
+        $panier = $session->get('panier', []);
+        $session->set('panier', $panier);
+
+        foreach ($panier as $id => $quantity) {
+            $panierBase = new Pannier();
+            $produits = $produitsRepository->find($id);
+            $client = $clientsRepository->find($id);
+
+            $panierBase->setClient($this->getUser());
+            $panierBase->setActiver(false);
+            $panierBase->setPrepare(false);
+            $panierBase->setPrix($produits->getPrix());
+            $panierBase->setQuantite($quantity);
+            $panierBase->setProduits($produits);
+            $panierBase->setNom($produits->getNom());
+            $panierBase->setTotal($produits->getPrix() * $quantity);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($panierBase);
+            $em->flush();
+        }
+
+        $session->set('panier', $panier);
+        return $this->redirectToRoute("etat");
     }
     /**
      * @Route("/panier/remove/{id}", name="panier_remove")

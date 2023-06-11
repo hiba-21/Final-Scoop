@@ -10,6 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ContactType extends AbstractType
 {
@@ -40,7 +41,18 @@ class ContactType extends AbstractType
                 "attr" => [
                     "class" => "form-control"
                 ]
-            ]);;
+            ])
+            ->add('Problem', ChoiceType::class, [
+
+                'choices'  => [
+                    'Temp de reponse long' => 'Temp de reponse long',
+                    'design' => 'design',
+
+                ],
+
+                'expanded' => true,
+                'multiple' => true
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

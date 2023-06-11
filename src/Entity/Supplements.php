@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=SupplementsRepository::class)
@@ -22,11 +23,13 @@ class Supplements
 
     /**
      * @ORM\Column(type="string", length=255)
+     *  @Assert\Regex(pattern="/[a-z]/")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Regex(pattern="/[0-9]{8}/")
      */
     private $prix;
 

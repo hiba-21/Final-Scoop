@@ -1,210 +1,127 @@
-<head>
-	<link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-	<link rel="stylesheet" href="/css/connecter.css">
-	<link rel="stylesheet" href="/css/footer.css">
-	<title>se connecter
-	</title>
-</head>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-	<div class="container-fluid">
-		<a class="navbar-brand" href="/">
-			<img src="/img/scoop.png" alt="" class="img-fluid">
-		</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item ">
-					<a class="nav-link " aria-current="page" href="/">Accueil
-						<span class="sr-only">(current)</span>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/service">Service</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/avis1">Avis</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link " href="/contact">Contact</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/register">S'inscrir</a>
-				</li>
-				<li class="nav-item active">
-					<a class="nav-link active" href="/login">Connecter</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">recherche</a>
-				</li>
-			</ul>
-			<form class="d-flex">
-				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success" type="submit">Search</button>
-			</form>
-		</div>
-	</div>
-</nav>
-{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
 
+		<link rel="stylesheet" href="/css/connecter.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
 	<body>
-		<div class="site-main">
-			<div id="breadcrumbs">
-				<span>
-					<span>
+		<div class="home">
+
+			<nav class="nav">
+				<div class="logo">
+					<a href="/appClient">
+						<img src="img/scoop.png" class="logoImg"/>
+					</a>
+				</div>
+				<div class="item">
+					<div>
 						<a href="/">
-							<span class="bi bi-house-door-fill"></span>
+							Accueil
 						</a>
-						&gt;
-						<span class="breadcrumb_last" aria-current="page">Connecter</span>
-					</span>
-				</span>
-			</div>
-			<div class="login-box">
-				<div id="name">
-					<div class="main">
-						<div id="name">
-
-							<form method="post">
-								{% if error %}
-									<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-								{% endif %}
-
-								{% if app.user %}
-									<div class="mb-3">
-										You are logged in as
-										{{ app.user.username }},
-										<a href="{{ path('app_logout') }}">Logout</a>
-									</div>
-								{% endif %}
-
-								<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-
-
-								<div class="textbox">
-									<span>
-										<i class="bi bi-envelope"></i>
-									</span>
-									<input type="email" value="{{ last_username }}" name="email" id="inputEmail" placeholder="email" class="form-control" required autofocus>
-								</div>
-
-								<div class="textbox">
-									<span>
-										<i class="bi bi-file-lock"></i>
-									</span>
-									<input type="password" name="password" id="inputPassword" placeholder="mot de passe" class="form-control" required>
-								</div>
-								<input
-								type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-								{#
-																																																																																																																																																																							        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-																																																																																																																																																																							        See https://symfony.com/doc/current/security/remember_me.html
-																																																																																																																																																																							
-																																																																																																																																																																							        <div class="checkbox mb-3">
-																																																																																																																																																																							            <label>
-																																																																																																																																																																							                <input type="checkbox" name="_remember_me"> Remember me
-																																																																																																																																																																							            </label>
-																																																																																																																																																																							        </div>
-																																																																																																																																																																							    #}
-
-								<button class="btn btn-lg btn-primary" type="submit">
-									Sign in
-								</button>
-								<div class="textbox">
-									<p>
-										<a href="{{path('app_forgot_password_request')}}">Mot de passe oublié</a>
-									</p>
-								</div>
-
-							</form>
-
+					</div>
+					<div>
+						<a href="/service">
+							Services
+						</a>
+					</div>
+					<div>
+						<a href="/avis1">
+							Avis
+						</a>
+					</div>
+					<div>
+						<a href="/contact">
+							Contact
+						</a>
+					</div>
+					<div>
+						<a href="/login">
+							<button class="loginBtn navBtn">Connexion</button>
+						</a>
+					</div>
+					<div>
+						<a href="/register">
+							<button class="signUpBtn navBtn">S'inscrire</button>
+						</a>
+					</div>
+				</div>
+			</nav>
+			{% block body %}
+				<div class="fromContainer">
+					<div class="fromContainer_First">
+						<div class="logPicture">
+							<img src="/img/inscrire.svg"/>
 						</div>
+					</div>
+					<form method="post">
+						<div class="login-box">
+							<div id="name">
+								<div class="main">
+									<div id="name">
+
+										<form method="post">
+											{% if error %}
+												<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+											{% endif %}
+
+											{% if app.user %}
+												<div class="mb-3">
+													You are logged in as
+													{{ app.user.username }},
+													<a href="{{ path('app_logout') }}">Logout</a>
+												</div>
+											{% endif %}
+
+											<h1 class="h3 mb-3 font-weight-normal">Connecter!</h1>
+
+
+											<div class="textbox">
+												<span>
+													<i class="bi bi-envelope"></i>
+												</span>
+												<input type="email" value="{{ last_username }}" name="email" id="inputEmail" placeholder="email" class="form-control" required autofocus>
+											</div>
+
+											<div class="textbox">
+												<span>
+													<i class="bi bi-file-lock"></i>
+												</span>
+												<input type="password" name="password" id="inputPassword" placeholder="mot de passe" class="form-control" required>
+											</div>
+											<input
+											type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+											{#
+																																																																																																																																																																																													        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+																																																																																																																																																																																													        See https://symfony.com/doc/current/security/remember_me.html
+																																																																																																																																																																																													
+																																																																																																																																																																																													        <div class="checkbox mb-3">
+																																																																																																																																																																																													            <label>
+																																																																																																																																																																																													                <input type="checkbox" name="_remember_me"> Remember me
+																																																																																																																																																																																													            </label>
+																																																																																																																																																																																													        </div>
+																																																																																																																																																																																													    #}
+
+											<button class="btn btn-lg btn-primary" type="submit">
+												Connecter
+											</button>
+											<div class="textbox">
+												<p>
+													<a href="{{path('app_forgot_password_request')}}">Mot de passe oublié</a>
+												</p>
+											</div>
+
+										</form>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</div>
-			<div class="footer">
-				<footer id="colophon" class="luke-site-footer">
-					<div class="footer-main-contents">
-						<div class="container footersize">
-							<div class="row">
-								<div class="col-md-3">
-									<div class="footer-widget-box">
-										<section id="text-1" class="widget widget_text">
-											<h4 class="footer-widget-title">À Propos de Scoop</h4>
-											<div class="textwidget">
-												<p style="text-align: justify;"></p>
-												<p>&nbsp;</p>
-											</div>
-										</section>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="footer-widget-box">
-										<section id="custom_html-8" class="widget_text widget widget_custom_html">
-											<h4 class="footer-widget-title">Services</h4>
-											<div class="textwidget custom-html-widget">
-												<a href="services/developpement-web-sur-mesure">Développement your app sur mesure
-												</a>
-											</div>
-										</section>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="footer-widget-box">
-										<section id="custom_html-7" class="widget_text widget widget_custom_html">
-											<h4 class="footer-widget-title">Contactez-nous</h4>
-											<div class="textwidget custom-html-widget">
-												<div class="contact-box">
-													<a href="tel:+216 36 152 153">
-														<i class="bi bi-telephone-fill"></i>
-														Téléphone:(+216)53 098 895</a><br>
-													<a href="mailto:contact@etcinfo.fr">
-														<i class="bi bi-envelope-fill"></i>
-														Email:contactScoop21@gmail.com</a>
-													<p>
-														<i class="bi bi-geo-alt-fill"></i>
-														Hiboun Mahdia - TUNISIE</p>
-												</div>
-											</div>
-										</section>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="footer-widget-box">
-										<section id="custom_html-9" class="widget_text widget widget_custom_html">
-											<h4 class="footer-widget-title">Suivez-nous</h4>
-											<div class="textwidget custom-html-widget">
-												<div class="textwidget custom-html-widget">
-													<a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-														<i class="bi bi-facebook"></i>
-														Facebook</a>
-													<br>
-													<img src="/img/scoop.png" class="image-footer">
-												</div>
-											</div>
-										</section>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</footer>
-				<div class="footer-bottom">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-6">
-								<span class="site-info">Copyright 2021 by Scoop</span>
-							</div>
-							<div class="col-md-6">
-								<div class="footer-bottom-widget"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</body>
-{% endblock %}
+		</body>
+	</html>
+</div></div></body>{% endblock %}

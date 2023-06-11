@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UsersRepository::class)
@@ -43,35 +44,7 @@ class Users implements UserInterface
      */
     private $isVerified = false;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $nom;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $prenom;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $domaine;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $cin;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $tel;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $confirm_password;
 
     /**
      * @ORM\OneToMany(targetEntity=Categories::class, mappedBy="users")
@@ -88,13 +61,56 @@ class Users implements UserInterface
      */
     private $supplements;
 
-   
+    /**
+     * @ORM\OneToMany(targetEntity=Promotion::class, mappedBy="users", orphanRemoval=true)
+     */
+    private $promotions;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(pattern="/[a-z]/")
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(pattern="/[a-z]/")
+     */
+    private $prenom;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $domaine;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(pattern="/[0-9]{8}/")
+     */
+    private $cin;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
+     * @Assert\regex(
+     * pattern="/[0-9]{8}/"
+     * )
+     */
+    private $tel;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $confirm_password;
+
+
 
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->produits = new ArrayCollection();
         $this->supplements = new ArrayCollection();
+        $this->promotions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -158,6 +174,7 @@ class Users implements UserInterface
         return $this;
     }
 
+
     /**
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
@@ -190,77 +207,6 @@ class Users implements UserInterface
         return $this;
     }
 
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): self
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getDomaine(): ?string
-    {
-        return $this->domaine;
-    }
-
-    public function setDomaine(string $domaine): self
-    {
-        $this->domaine = $domaine;
-
-        return $this;
-    }
-
-    public function getCin(): ?string
-    {
-        return $this->cin;
-    }
-
-    public function setCin(string $cin): self
-    {
-        $this->cin = $cin;
-
-        return $this;
-    }
-
-    public function getTel(): ?int
-    {
-        return $this->tel;
-    }
-
-    public function setTel(int $tel): self
-    {
-        $this->tel = $tel;
-
-        return $this;
-    }
-
-    public function getConfirmPassword(): ?string
-    {
-        return $this->confirm_password;
-    }
-
-    public function setConfirmPassword(string $confirm_password): self
-    {
-        $this->confirm_password = $confirm_password;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Categories[]
@@ -348,6 +294,113 @@ class Users implements UserInterface
                 $supplement->setUsers(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Promotion[]
+     */
+    public function getPromotions(): Collection
+    {
+        return $this->promotions;
+    }
+
+    public function addPromotion(Promotion $promotion): self
+    {
+        if (!$this->promotions->contains($promotion)) {
+            $this->promotions[] = $promotion;
+            $promotion->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removePromotion(Promotion $promotion): self
+    {
+        if ($this->promotions->removeElement($promotion)) {
+            // set the owning side to null (unless already changed)
+            if ($promotion->getUsers() === $this) {
+                $promotion->setUsers(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
+
+
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getDomaine(): ?string
+    {
+        return $this->domaine;
+    }
+
+    public function setDomaine(string $domaine): self
+    {
+        $this->domaine = $domaine;
+
+        return $this;
+    }
+
+    public function getCin(): ?string
+    {
+        return $this->cin;
+    }
+
+    public function setCin(string $cin): self
+    {
+        $this->cin = $cin;
+
+        return $this;
+    }
+
+    public function getTel(): ?int
+    {
+        return $this->tel;
+    }
+
+    public function setTel(int $tel): self
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
+    public function getConfirmPassword(): ?string
+    {
+        return $this->confirm_password;
+    }
+
+    public function setConfirmPassword(string $confirm_password): self
+    {
+        $this->confirm_password = $confirm_password;
 
         return $this;
     }

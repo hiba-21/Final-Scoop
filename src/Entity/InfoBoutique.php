@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
  * @ORM\Entity(repositoryClass=InfoBoutiqueRepository::class)
  */
@@ -22,6 +23,7 @@ class InfoBoutique
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Regex(pattern="/[a-z]/")
      */
     private $descrip;
 
@@ -37,6 +39,7 @@ class InfoBoutique
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Regex(pattern="/[0-9]{8}/")
      */
     private $capital;
 
@@ -57,6 +60,7 @@ class InfoBoutique
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Regex(pattern="/[0-9]{5}/")
      */
     private $code_postal;
 
@@ -72,11 +76,13 @@ class InfoBoutique
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(pattern="/[a-z]/")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Regex(pattern="/[0-9]{8}/")
      */
     private $tel;
 

@@ -3,9 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\stringCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
@@ -25,7 +26,8 @@ class Comment
     private $nom;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
+     * @Assert\Length(min=10)
      */
     private $commentaire;
 
@@ -38,6 +40,13 @@ class Comment
      * @ORM\Column(type="datetime")
      */
     private $CreateAt;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $evaluation = [];
+
+
 
 
     public function getId(): ?int
@@ -89,6 +98,18 @@ class Comment
     public function setCreateAt(\DateTimeInterface $CreateAt): self
     {
         $this->CreateAt = $CreateAt;
+
+        return $this;
+    }
+
+    public function getEvaluation(): ?array
+    {
+        return $this->evaluation;
+    }
+
+    public function setEvaluation(array $evaluation): self
+    {
+        $this->evaluation = $evaluation;
 
         return $this;
     }

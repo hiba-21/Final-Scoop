@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Categories;
+use PhpParser\Node\Stmt\Label;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -15,7 +16,7 @@ class CategoriesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', TextType::class)
+            ->add('nom', TextType::class, ['label' => 'nom'])
             // ->add('slug')
             //->add('parents')
             ->add('couleur', ColorType::class);

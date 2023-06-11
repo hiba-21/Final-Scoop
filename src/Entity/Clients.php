@@ -3,8 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\ClientsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=ClientsRepository::class)
@@ -41,13 +46,52 @@ class Clients implements UserInterface
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Regex(
+     * pattern="/[0-9]{4}/"
+     * )
+     * 
      */
     private $code_postal;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\Regex(pattern="/[a-z]/")
      */
     private $Nom;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\Regex(
+     * pattern="/[0-9]{8}/"
+     * )
+     */
+    private $numero;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $creatAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Pannier::class, mappedBy="client", orphanRemoval=true)
+     */
+    private $panniers;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="client")
+     */
+    private $commandes;
+
+
+
+
+
+    public function __construct()
+    {
+        $this->panniers = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -162,6 +206,90 @@ class Clients implements UserInterface
     public function setNom(string $Nom): self
     {
         $this->Nom = $Nom;
+
+        return $this;
+    }
+
+    public function getNumero(): ?int
+    {
+        return $this->numero;
+    }
+
+    public function setNumero(int $numero): self
+    {
+        $this->numero = $numero;
+
+        return $this;
+    }
+
+    public function getCreatAt(): ?\DateTimeInterface
+    {
+        return $this->creatAt;
+    }
+
+    public function setCreatAt(\DateTimeInterface $creatAt): self
+    {
+        $this->creatAt = $creatAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Pannier[]
+     */
+    public function getPanniers(): Collection
+    {
+        return $this->panniers;
+    }
+
+    public function addPannier(Pannier $pannier): self
+    {
+        if (!$this->panniers->contains($pannier)) {
+            $this->panniers[] = $pannier;
+            $pannier->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removePannier(Pannier $pannier): self
+    {
+        if ($this->panniers->removeElement($pannier)) {
+            // set the owning side to null (unless already changed)
+            if ($pannier->getClient() === $this) {
+                $pannier->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getClient() === $this) {
+                $commande->setClient(null);
+            }
+        }
 
         return $this;
     }

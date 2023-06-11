@@ -1,0 +1,91 @@
+.fromContainer{
+    display: grid;
+    grid-auto-columns: minmax(auto, 1fr);
+    -webkit-box-align: center;
+    align-items: center;
+    grid-template-areas: "col1 col2";
+}
+@media screen and (max-width: 768px){
+    .fromContainer {
+        grid-template-areas:
+            "col1 col1"
+            "col2 col2";
+}
+}
+.fromContainer_First{
+    margin-bottom: 15px;
+    padding: 0px 15px;
+    grid-area: col1 / col1 / col1 / col1;
+    margin-top: -120px;
+}
+
+.logForm{
+    margin-bottom: 15px;
+    padding: 0px 15px;
+    grid-area: col2 / col2 / col2 / col2;
+    max-width: 555px;
+    height: 100%;
+}
+#name{
+    width:400px;
+    margin:0 auto;
+    margin-top:10%;
+}
+.main{
+    width:100%;
+    padding: 30px;
+    border: 1px solid #f1f1f1;
+    background: #fff;
+    margin-top: -200px;
+    
+    border-radius: 15px !important;
+}
+.ins{
+    width:100%;
+    padding: 30px;
+    border: 1px solid #f1f1f1;
+    background: #fff;
+    margin-top: -70px;
+    
+    border-radius: 15px !important;
+}
+.main:hover{
+    cursor: pointer !important;
+  background-color: #b6dede !important;
+  box-shadow: 0 4px 2px -2px gray !important;
+  transform: scale(1.02) !important;
+}
+.main h1 {
+    width: 38%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+input[type=email], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;   
+}
+button{
+    width: 99px;
+    height: 49px;
+    font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 20px;
+    border: none;
+  
+  background: #ACEBEB;
+  border-radius: 25px;
+}

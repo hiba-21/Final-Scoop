@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="/css/order.css"></head>
+	<body>
+		<div class="home">
+			<nav class="nav">
+				<div class="logo">
+					<a href="/appClient">
+						<img src="/img/scoop.png" class="logoImg"/>
+					</a>
+				</div>
+				<div class="item">
+					<div>
+						Accueil
+					</div>
+					<div>
+						<a href="/produit">
+							Menu
+						</a>
+					</div>
+					<div>
+						<a href="/panier">
+							<img src="/img/Shopping Cart.png" class="ShoppingCart"/>
+						</a>
+					</div>
+					<div>
+						<button class="loginBtn navBtn">Connexion</button>
+					</div>
+					<div>
+						<button class="signUpBtn navBtn">S'inscrire</button>
+					</div>
+					<div>
+						<a href="/etat">
+							<button class="signUpBtn navBtn">L'etat</button>
+						</a>
+					</div>
+				</div>
+			</nav>
+			<div class="orderContainer">
+				<div class="menuNav">
+					<h2>Menu</h2>
+					<ul class="menuList">
+						{% for categorie in categories %}
+							<li class="menuListLi">
+
+								<img src="/img/dish.png"/>
+
+
+								<a href="{{path("afpd", {id: categorie.id}) }}" class="menu">
+
+									<p>
+										{{categorie.nom}}
+
+									</p>
+								</a>
+
+
+							</li>
+						{% endfor %}
+						<li class="menuListLi">
+							<img src="/img/french-fries.png"/>
+							<a href="/supplements" class="menu">
+								<p>
+									Supplements
+								</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="Foodcontainer">
+
+					<div class="cardContainer">
+
+						{% for produitcategorie in produitcategories %}
+
+							<div class="Foodcard">
+								{% for image in produitcategorie.images %}
+									<img src="{{ asset('/uploads/' ~ image.nom)|imagine_filter('square')}}" alt="Image" width="150"/>
+								{% endfor %}
+								<div class="foodCard_secondSection">
+									<h4>{{ produitcategorie.nom }}</h4>
+
+									<p>
+										{{produitcategorie.description}}
+									</p>
+									<strong>
+										{{produitcategorie.prix}}DT</strong>
+
+
+									<a href="{{path('panier_add',{'id':produitcategorie.id})}}" class="orderBtn">
+
+										<i><img src="/img/Shopping Cart.png" class="btnShopingcart"/></i>
+										Ajouter
+									</a>
+
+
+								</div>
+
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+
+			</body>
+		</html>
+	</body>
+</html>

@@ -1,0 +1,210 @@
+.nav{
+    display: flex;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+   justify-content: space-between;
+   margin-left: 20px;
+   margin-right: 20px;
+   align-items: center;
+}
+   .nav:hover{
+    cursor: pointer;
+}
+.logoImg{
+ width: 107px;
+ margin-left: 16px;
+height: 89px;
+}
+.item{
+    display: flex;
+    margin: 20px;
+   justify-content: space-between;
+   padding: 30px;
+   font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 28px;
+   align-items: center;
+
+}
+.item>div{
+    padding-right: 20px;
+}
+.ShoppingCart{
+    width: 54px;
+height: 50px;
+}
+.loginBtn{
+    border: none;
+    font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 28px;
+    background-color: white;
+}
+.signUpBtn{
+    width: 99px;
+  height: 49px;
+  font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 20px;
+  border: none;
+
+background: #ACEBEB;
+border-radius: 25px;
+}
+.signUpBtn:hover{
+    
+    cursor: pointer;
+    background: #FFBBFC ;
+}
+.navBtn:hover{
+    cursor: pointer;
+}
+
+.orderContainer{
+    display: flex;
+    justify-content: space-between;
+    margin-top:50px ;
+}
+.menuNav{
+    border: 1px solid lightgray !important;
+    width: 250px !important;
+    height: 450px !important;
+    margin-left: 29px !important;
+    overflow: hidden !important;
+    overflow-y: auto !important;
+    border-radius: 15px !important;
+    flex: 0.2;
+}
+.menuNav>h2{
+    text-align: center !important;
+}
+.menuList{
+    list-style-type: none !important;
+    padding-left: 10px !important;
+  
+}
+.menuListLi{
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 15px !important;
+    border: none !important ;
+    margin-bottom: 15px !important;
+    border-radius: 30px !important;
+    background-color: #ACEBEB !important;
+    transition: transform .2s !important;
+    margin-right: 17px;
+}
+.menuListLi:hover{
+  cursor: pointer !important;
+  background-color: #b6dede !important;
+  box-shadow: 0 4px 2px -2px gray !important;
+  transform: scale(1.02) !important;
+
+}
+.menuListLi img{
+    height: 50px;
+    width: 50px;
+    margin-left: 20px !important;
+    margin-bottom: 5px !important;
+    margin-top: 5px !important;
+
+}
+.menu{
+    text-decoration: none !important;
+    color: black !important;
+    flex: 6 !important;
+    margin-left: 18px !important;
+    font-weight: 800;
+}
+.Foodcard>img{
+    width: 284px !important;
+     height: 203px !important;
+border-radius: 44px 44px 0px 0px !important;
+}
+
+
+.Foodcontainer{
+    display: flex;
+    flex-direction: column;
+    padding-right: 101px;
+    flex: 0.8;
+}
+.searchContainer>input{
+    border: none;
+    margin-left: 12px;
+    
+    outline-width: 0;
+    width: 100%;
+}
+.cardContainer{
+    
+    display: flex;
+    flex-wrap: wrap;
+}
+.Foodcard{
+    border-radius:44px ;
+    margin: 30px;
+    transition: transform .2s ;
+    
+    
+}
+.Foodcard:hover{
+    box-shadow: 0 6px 18px -9px rgb(202 193 193 / 99%);
+    transform: scale(1.07);
+   
+}
+.foodCard_secondSection{
+    border: 1px solid lightgray;
+    border-bottom-left-radius: 44px;
+    border-bottom-right-radius: 44px;
+    padding-top: -12px;
+    padding-bottom: 10px;
+    padding-left: 19px;
+    margin-top: -5px;
+}
+.orderBtn{
+    width:150px ;
+height: 50px;
+background: #ACEBEB;
+border-radius: 50px;
+border: none;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 28px;
+display: flex;
+    align-items: center;
+    
+    /* padding: 50px; */
+    padding-left: 30px;
+    padding-right: 30px;
+    text-decoration: none;
+    color: black;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.orderBtn:hover{
+ cursor: pointer;
+ background-color: #FFBBFC; 
+}
+.orderBtn>i{
+    margin-left: 18px;
+    flex: 0.6;
+}
+.btnShopingcart{
+    width: 30px;
+}

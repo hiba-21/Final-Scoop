@@ -5,13 +5,16 @@
 
 			{% endblock %}
 		</title>
+		<link rel="stylesheet" href="/css/categorie.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/css/axentix.min.css">
 	</head>
 	<body>
 		{% block body %}
 			<h1>Gérer les catégories</h1>
-			<a href="{{path("respo_categories_ajout")}}" class="btn blue">
-				Ajouter une catégorie</a>
+			<div class="col">
+				<a href="{{path("respo_categories_ajout")}}" class="btn blue">
+					Ajouter une catégorie</a>
+			</div>
 			<div class="responsive-table">
 				<table class="table striped">
 					<thead>
@@ -41,9 +44,9 @@
 								</td>
 
 								<td class="text-center">
-									<a href="{{path("respo_Categories_modifier", {id: categorie.id}) }}" class="btn blue">
+									<a href="{{path("respo_Categories_modifier", {id: categorie.id}) }}" class="btn blue" id="edit">
 										Modifier</a>
-									<a href="#" class="btn rounded-1 primary press modal-trigger" data-target="modal-delete-cat" data-id="{{categorie.id}}" data-nom="{{categorie.nom}}">Supprimer</a>
+									<a href="#" class="btn rounded-1 primary press modal-trigger" data-target="modal-delete-cat" data-id="{{categorie.id}}" data-nom="{{categorie.nom}}" id="supprimer">Supprimer</a>
 								</td>
 							</tr>
 						{% endfor %}
@@ -65,7 +68,7 @@
 					</div>
 				</div>
 			</div>
-	<script src="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/js/axentix.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/js/axentix.min.js"></script>
 		{% endblock %}
 		{% block javascripts %}
 			<script>

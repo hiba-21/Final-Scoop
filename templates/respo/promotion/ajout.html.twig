@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+
+		<meta charset="utf-8">
+
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1">
+
+
+		<!-- Google Font: Source Sans Pro -->
+
+		<link
+		rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
+		<!-- Font Awesome -->
+
+		<link
+		rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+
+		<!-- Theme style -->
+
+		<link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+		<link rel="stylesheet" href="/css/ajout.css">
+	</head>
+
+	<body
+		class="hold-transition sidebar-mini">
+
+		<!-- general form elements disabled -->
+
+		<div class="card card-warning">
+
+			<div class="card-header">
+
+				<h3 class="card-title">Ajouter une régle</h3>
+
+			</div>
+
+			<!-- /.card-header -->
+
+			<div class="card-body">
+				{{form_start(form)}}
+				<form>
+
+					<div class="row">
+
+						<div
+							class="col-sm-6">
+
+							<!-- text input -->
+
+							<div class="form-group">
+
+								<label>Nom de la régle</label>
+
+								<!--input type="text" class="form-control" placeholder="Enter ..."-->
+
+								{{form_widget(form.firstName)}}
+
+							</div>
+
+						</div>
+
+						<div class="col-sm-6">
+
+							<div class="form-group">
+
+								<label>Nom sur la boutique</label>
+
+								<!--input type="text" class="form-control" placeholder="Enter ..."-->
+								{{form_widget(form.lastNAme)}}
+							</div>
+
+						</div>
+
+						<div class="col-sm-6">
+
+							<div class="form-group">
+
+								<label>répétition(tous les X produits)</label>
+								{{form_widget(form.repetition)}}
+								<!--input type="text" class="form-control" placeholder="Enter ..."-->
+
+							</div>
+
+						</div>
+
+						<div class="col-sm-6">
+
+							<div class="form-group">
+
+								<label>Quantité de produits remisés</label>
+								{{form_widget(form.quantite)}}
+								<!--input type="text" class="form-control" placeholder="Enter ..."-->
+
+							</div>
+
+						</div>
+
+						<div class="col-sm-6">
+
+							<div class="form-group">
+
+								<label>Type de remise</label>
+								{{form_widget(form.type)}}
+								<!--input type="text" class="form-control" placeholder="Enter ..."-->
+
+							</div>
+
+						</div>
+
+						<div class="col-sm-6">
+
+							<div class="form-group">
+
+								<label>Montant de la remise</label>
+								{{form_widget(form.Montant)}}
+								<!--input type="text" class="form-control" placeholder="Enter ..."-->
+
+							</div>
+
+						</div>
+
+						<div class="col-sm-6">
+
+							<div class="row">
+
+								<div
+									class="col-sm-6">
+
+									<!-- select -->
+
+									<div class="form-group">
+
+										<label>Choix du produit remisé</label>
+
+										{{form_widget(form.produits)}}
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="card-footer">
+
+							<button type="submit" class="btn btn-primary">Submit</button>
+
+						</div>
+
+					</form>
+					{{form_end(form)}}
+
+				</div>
+
+				<!-- /.card-body -->
+
+			</div>
+		</body>
+	</body>
+</html>

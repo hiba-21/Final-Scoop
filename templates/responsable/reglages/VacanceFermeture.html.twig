@@ -52,121 +52,123 @@
 				<a class="nav-link active" href="/vac">Vacances & Fermetures
 				</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Vacances & fermetures</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link " href="#">Horaires d'ouvrerture/livraison</a>
-			</li>
+		
 		</ul>
 
 		<!-- /.card-header -->
-		<!-- form start -->
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-3">
-					<div class="sticky-top mb-3">
-						<div class="card">
-							<div class="card-header">
-								<h4 class="card-title">Draggable Events</h4>
-							</div>
-							<div
-								class="card-body">
-								<!-- the events -->
-								<div id="external-events">
+		<div>
+			<label for="Code APE">
+				Horaires
+			</label>
+			<form methode="post">
+				<table class="table">
+					<thead>
+						<th>Jours</th>
+						<th>Horaires d'ouvrerture</th>
+						<th>Horaires de fermeture</th>
 
-									<div class="external-event bg-warning">Vacance</div>
-									<div class="external-event bg-danger">Fermeture</div>
+					</thead>
+					<tbody>
 
-								</div>
-							</div>
-							<!-- /.card-body -->
-						</div>
-						<!-- /.card -->
-						<div class="card">
-							<div class="card-header">
-								<h3 class="card-title">Create Event</h3>
-							</div>
-							{{ form_start(form) }}
+						<tr>
 
-							<div class="card-body">
-								<div
-									class="btn-group" style="width: 100%; margin-bottom: 10px;">
-									<!--ul class="fc-color-picker" id="color-chooser">
-																																																																																																																					
-																																																																																																																															<li>
-																																																																																																																																<a class="text-warning" href="#">
-																																																																																																																																	<i class="fas fa-square"></i>
-																																																																																																																																</a>
-																																																																																																																															</li>
-																																																																																																																					
-																																																																																																																															<li>
-																																																																																																																																<a class="text-danger" href="#">
-																																																																																																																																	<i class="fas fa-square"></i>
-																																																																																																																																</a>
-																																																																																																																															</li>
-																																																																																																																					
-																																																																																																																														</ul-->
-									{{ form_widget(form.background_color) }}
-									{{ form_widget(form.border_color) }}
-									{{ form_widget(form.text_color) }}
-								</div>
-								<!-- /btn-group -->
-								<!--div class="input-group">
-																																																																																	<input id="new-event" type="text" class="form-control" placeholder="Event Title">
-																																																																								
-																																																																																	<div class="input-group-append">
-																																																																																		<button id="add-new-event" type="button" class="btn btn-primary">Ajouter</button>
-																																																																																	</div>
-																																																																																	<!-- /btn-group >
-																																																																																</div-->
-								<!-- /input-group -->
-								{{ form_widget(form) }}
-									<button class="btn"> {{ button_label|default('Save') }}</button>
-								{{ form_end(form) }}
-							</div>
-						</div>
-					</div>
-				</div>
+							<td data-label="Jours"><input class="form-check-input" type="checkbox" name="check" value="Lundi" id="flexCheck">
+								<label class="form-check-label" for="flexCheckDefault" name="jour">
+									Lundi
+								</label>
+							</td>
+							<td data-label="Horaires d'ouvrerture"><input type="time" id="appt" name="appt" min="09:00" max="18:00"></td>
+							<td data-label="Horaires de fermeture"><input type="time" id="appt" name="apptf" min="09:00" max="00:00"></td>
 
+						</tr>
 
-				<!-- /.col -->
-				<div class="col-md-9">
-					<div class="card card-primary">
-						<div
-							class="card-body p-0">
-							<!-- THE CALENDAR -->
-							<pre >
-								{{ dump(data) }}
-							</pre>
-							<div id="calendar"></div>
-						</div>
-						<!-- /.card-body -->
-					</div>
-					<!-- /.card -->
-				</div>
-				<!-- /.col -->
-			</div>
-			<!-- /.row -->
+						<tr>
+							<td data-label="Jours"><input class="form-check-input" type="checkbox" name="check" value="Mardi" id="flexCheck1">
+								<label class="form-check-label" for="flexCheckDefault" name="jour">
+									Mardi
+								</label>
+							</td>
+							<td data-label="Horaires d'ouvrerture"><input type="time" id="appt" name="appt" min="09:00" max="18:00"></td>
+							<td data-label="Horaires de fermeture"><input type="time" id="appt" name="apptf" min="09:00" max="00:00"></td>
+
+						</tr>
+
+						<tr>
+							<td data-label="Jours"><input class="form-check-input" type="checkbox" name="check" value="Mercredi" id="flexCheck2">
+								<label class="form-check-label" for="flexCheckDefault" name="jour">
+									Mercredi
+								</label>
+							</td>
+							<td data-label="Horaires d'ouvrerture"><input type="time" id="appt" name="appt" min="09:00" max="18:00"></td>
+							<td data-label="Horaires de fermeture"><input type="time" id="appt" name="apptf" min="09:00" max="00:00"></td>
+
+						</tr>
+
+						<tr>
+							<td data-label="Jours"><input class="form-check-input" type="checkbox" name="check" value="Jeudi" id="flexCheck3">
+								<label class="form-check-label" for="flexCheckDefault" name="jour">
+									Jeudi
+								</label>
+							</td>
+							<td data-label="Horaires d'ouvrerture"><input type="time" id="appt" name="appt" min="09:00" max="18:00"></td>
+							<td data-label="Horaires de fermeture"><input type="time" id="appt" name="apptf" min="09:00" max="00:00"></td>
+
+						</tr>
+						<tr>
+							<td data-label="Jours"><input class="form-check-input" type="checkbox" name="check" value="Vendredi" id="flexCheck4">
+								<label class="form-check-label" for="flexCheckDefault" name="jour">
+									Vendredi
+								</label>
+							</td>
+							<td data-label="Horaires d'ouvrerture"><input type="time" id="appt" name="appt" min="09:00" max="18:00"></td>
+							<td data-label="Horaires de fermeture"><input type="time" id="appt" name="apptf" min="09:00" max="00:00"></td>
+
+						</tr>
+						<tr>
+							<td data-label="Jours"><input class="form-check-input" type="checkbox" name="check" value="Samedi" id="flexCheck5">
+								<label class="form-check-label" for="flexCheckDefault" name="jour">
+									Samedi
+								</label>
+							</td>
+							<td data-label="Horaires d'ouvrerture"><input type="time" id="appt" name="appt" min="09:00" max="18:00"></td>
+							<td data-label="Horaires de fermeture"><input type="time" id="appt" name="apptf" min="09:00" max="00:00"></td>
+
+						</tr>
+						<tr>
+							<td data-label="Jours"><input class="form-check-input" type="checkbox" name="check" value="Dimanche" id="flexCheck6">
+								<label class="form-check-label" for="flexCheckDefault" name="jour">
+									Dimanche
+								</label>
+							</td>
+							<td data-label="Horaires d'ouvrerture"><input type="time" id="appt" name="appt" min="09:00" max="18:00"></td>
+							<td data-label="Horaires de fermeture"><input type="time" id="appt" name="apptf" min="09:00" max="00:00"></td>
+						</tr>
+						<tr>
+							<td>
+								<a href="/horaires"><input type="submit" name="submit" value="Submit"/></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
 		</div>
-		<!-- /.container-fluid -->
 
+		<!-- /.col -->
+		<div class="col-md-9">
+			<div class="card card-primary">
+				<div
+					class="card-body p-0">
+					<!-- THE CALENDAR -->
 
-		<script src="../plugins/jquery/jquery.min.js"></script>
-		<!-- Bootstrap -->
-		<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<!-- jQuery UI -->
-		<script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
-		<!-- AdminLTE App -->
-		<script src="../dist/js/adminlte.min.js"></script>
-		<!-- fullCalendar 2.2.5 -->
-		<script src="../plugins/moment/moment.min.js"></script>
-		<script src="../plugins/fullcalendar/main.js"></script>
-		<!-- AdminLTE for demo purposes -->
-		<script src="../dist/js/demo.js"></script>
-		<!-- Page specific script -->
-		<script>
-			$(function () { /* initialize the external events
+					<div id="calendar"></div>
+				</div>
+				<!-- /.card-body -->
+			</div>
+			<!-- /.card -->
+		</div>
+		<!-- /.col -->
+	</body>
+</html></div><!-- /.row --></div><!-- /.container-fluid --><script src="../plugins/jquery/jquery.min.js"></script><!-- Bootstrap --><script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script><!-- jQuery UI --><script src="../plugins/jquery-ui/jquery-ui.min.js"></script><!-- AdminLTE App --><script src="../dist/js/adminlte.min.js"></script><!-- fullCalendar 2.2.5 --><script src="../plugins/moment/moment.min.js"></script><script src="../plugins/fullcalendar/main.js"></script><!-- AdminLTE for demo purposes --><script src="../dist/js/demo.js"></script><!-- Page specific script --><script>$(function () { /* initialize the external events
        -----------------------------------------------------------------*/
 function ini_events(ele) {
 ele.each(function () {
@@ -280,9 +282,4 @@ ini_events(event)
 // Remove event from text input
 $('#new-event').val('')
 })
-})
-		</script>
-		<!-- /.content-header -->
-	</body>
-
-</html>
+})</script><!-- /.content-header --></body></html>

@@ -1,85 +1,103 @@
-<head>
-	<link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-	<link rel="stylesheet" href="/css/insclient.css">
-	<link rel="stylesheet" href="/css/footer.css">
-</head>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-	<div class="container-fluid">
-		<a class="navbar-brand" href="/">
-			<img src="/img/scoop.png" alt="" class="img-fluid">
-		</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item active">
-					<a class="nav-link active" href="/insclient">S'inscrir</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/conclient">Connecter</a>
-				</li>
-				
-		</div>
-	</div>
-</nav>
-{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="/css/order.css">
+		<link rel="stylesheet" href="/css/conclient.css">
+	</head>
 	<body>
-		<div class="site-main">
-			<div id="breadcrumbs">
-				<span>
-					<span>
-						<a href="/">
-							<span class="bi bi-house-door-fill"></span>
+		<div class="home">
+			<nav class="nav">
+				<div class="logo">
+					<a href="/appClient">
+						<img src="img/scoop.png" class="logoImg"/>
+					</a>
+				</div>
+				<div class="item">
+					<div>
+						<a href="appClient">
+							Accueil
 						</a>
-						&gt;
-						<span class="breadcrumb_last" aria-current="page">Inscrire</span>
-					</span>
-				</span>
-			</div>
-			{% for flashError in app.flashes('verify_email_error') %}
-				<div class="alert alert-danger" role="alert">{{ flashError }}</div>
-			{% endfor %}
-			<div id="login-box">
-				<div id="name">
-					<div class="main">
-						<h1>S'inscrire</h1>
-
-						{{ form_start(insclientForm) }}
-
-						<div class="textbox">
-							{{ form_row(insclientForm.email) }}
-						</div>
-						<div class="textbox">
-							{{ form_row(insclientForm.Nom) }}
-						</div>
-	
-						<div class="textbox">
-							{{ form_row(insclientForm.ville) }}
-						</div>
-						<div class="textbox">
-							{{ form_row(insclientForm.code_postal) }}
-						</div>
-						
-						<div class="textbox">
-
-							{{ form_row(insclientForm.plainPassword, {
-           								 label: 'Password'
-       							 }) }}
-						</div>
-						<div class="textbox">
-
-							{{ form_row(insclientForm.agreeTerms) }}
-						</div>
-						<div class="btn">
-						<button type="submit" class="btn btn-primary">Enregister</button>
-						</div>
-						{{ form_end(insclientForm) }}
+					</div>
+					<div>
+						<a href="/produit">
+							Menu
+						</a>
+					</div>
+					<div>
+						<a href="/panier">
+							<img src="/img/Shopping Cart.png" class="ShoppingCart"/>
+						</a>
+					</div>
+					<div>
+						<a href="/conclient">
+							<button class="loginBtn navBtn">Connexion</button>
+						</a>
+					</div>
+					<div>
+						<button class="signUpBtn navBtn">S'inscrire</button>
+					</div>
+					<div>
+						<a href="/etat">
+							<button class="signUpBtn navBtn">L'etat</button>
+						</a>
 					</div>
 				</div>
+			</nav>
 
-			</div>
-		
+			{% block body %}
+				<div class="fromContainer">
+					<div class="fromContainer_First">
+						<div class="logPicture">
+							<img src="/img/Group 7.svg"/>
+						</div>
+					</div>
+					{% for flashError in app.flashes('verify_email_error') %}
+						<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+					{% endfor %}
+					<div id="login-box">
+						<div id="name">
+							<div class="ins">
+								<h1>S'inscrire</h1>
+
+								{{ form_start(insclientForm) }}
+
+								<div class="textbox">
+									{{ form_row(insclientForm.email) }}
+								</div>
+								<div class="textbox">
+									{{ form_row(insclientForm.Nom) }}
+								</div>
+								<div class="textbox">
+									{{ form_row(insclientForm.numero) }}
+								</div>
+
+								<div class="textbox">
+									{{ form_row(insclientForm.ville) }}
+								</div>
+								<div class="textbox">
+									{{ form_row(insclientForm.code_postal) }}
+								</div>
+
+								<div class="textbox">
+
+									{{ form_row(insclientForm.plainPassword, {
+           								 label: 'Password'
+       							 }) }}
+								</div>
+								<div class="textbox">
+
+									{{ form_row(insclientForm.agreeTerms) }}
+								</div>
+								<div class="btn">
+									<button type="submit" class="btn btn-primary">Enregister</button>
+								</div>
+								{{ form_end(insclientForm) }}
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</body>
+		{% endblock %}
 	</body>
-{% endblock %}
+</html>

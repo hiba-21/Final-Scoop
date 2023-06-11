@@ -5,7 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>responsable | Accueil
 		</title>
-
+		<link
+		rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous">
 		<!-- Google Font: Source Sans Pro -->
 		<link
 		rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -19,9 +20,11 @@
 		<link
 		rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 		<!-- Ionicons -->
+		<link rel="stylesheet" href="/css/temp.css">
 		<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 	</head>
-	<body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
+	<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 		<div
 			class="wrapper">
 
@@ -36,11 +39,9 @@
 						</a>
 					</li>
 					<li class="nav-item d-none d-sm-inline-block">
-						<a href="/temp" class="nav-link">Home</a>
+						<a href="/temp" class="nav-link">Accueil</a>
 					</li>
-					<li class="nav-item d-none d-sm-inline-block">
-						<a href="#" class="nav-link">Contact</a>
-					</li>
+
 				</ul>
 
 				<!-- Right navbar links -->
@@ -65,80 +66,6 @@
 									</div>
 								</div>
 							</form>
-						</div>
-					</li>
-
-					<!-- Messages Dropdown Menu -->
-					<li class="nav-item dropdown">
-						<a class="nav-link" data-toggle="dropdown" href="#">
-							<i class="far fa-comments"></i>
-							<span class="badge badge-danger navbar-badge">3</span>
-						</a>
-						<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-							<a
-								href="#" class="dropdown-item">
-								<!-- Message Start -->
-								<div class="media">
-									<img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-									<div class="media-body">
-										<h3 class="dropdown-item-title">
-											Brad Diesel
-											<span class="float-right text-sm text-danger">
-												<i class="fas fa-star"></i>
-											</span>
-										</h3>
-										<p class="text-sm">Call me whenever you can...</p>
-										<p class="text-sm text-muted">
-											<i class="far fa-clock mr-1"></i>
-											4 Hours Ago</p>
-									</div>
-								</div>
-								<!-- Message End -->
-							</a>
-							<div class="dropdown-divider"></div>
-							<a
-								href="#" class="dropdown-item">
-								<!-- Message Start -->
-								<div class="media">
-									<img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-									<div class="media-body">
-										<h3 class="dropdown-item-title">
-											John Pierce
-											<span class="float-right text-sm text-muted">
-												<i class="fas fa-star"></i>
-											</span>
-										</h3>
-										<p class="text-sm">I got your message bro</p>
-										<p class="text-sm text-muted">
-											<i class="far fa-clock mr-1"></i>
-											4 Hours Ago</p>
-									</div>
-								</div>
-								<!-- Message End -->
-							</a>
-							<div class="dropdown-divider"></div>
-							<a
-								href="#" class="dropdown-item">
-								<!-- Message Start -->
-								<div class="media">
-									<img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-									<div class="media-body">
-										<h3 class="dropdown-item-title">
-											Nora Silvester
-											<span class="float-right text-sm text-warning">
-												<i class="fas fa-star"></i>
-											</span>
-										</h3>
-										<p class="text-sm">The subject goes here</p>
-										<p class="text-sm text-muted">
-											<i class="far fa-clock mr-1"></i>
-											4 Hours Ago</p>
-									</div>
-								</div>
-								<!-- Message End -->
-							</a>
-							<div class="dropdown-divider"></div>
-							<a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
 						</div>
 					</li>
 					<!-- Notifications Dropdown Menu -->
@@ -216,7 +143,7 @@
 						<ul
 							class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 							<!-- Add icons to the links using the .nav-icon class
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				               with font-awesome or any other icon font library -->
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									               with font-awesome or any other icon font library -->
 							<li class="nav-item">
 								<a href="/reglage" class="nav-link">
 									<i class="nav-icon fas fa-th"></i>
@@ -235,133 +162,32 @@
 									</p>
 								</a>
 								<ul class="nav nav-treeview">
-									<li class="nav-item">
-										<a href="/index1" class="nav-link">
-											<i class="far fa-circle nav-icon"></i>
-											<p>Chiffre d'affaire</p>
-										</a>
-									</li>
+
 									<li class="nav-item">
 										<a href="/utilisateurs" class="nav-link">
 											<i class="far fa-circle nav-icon"></i>
-											<p>Utilisateurs</p>
+											<p>Statistique de Clients</p>
 										</a>
 									</li>
 									<li class="nav-item">
 										<a href="/categories" class="nav-link">
 											<i class="far fa-circle nav-icon"></i>
-											<p>Categories</p>
+											<p>Produits</p>
 										</a>
 									</li>
 									<li class="nav-item">
-										<a href="/commands" class="nav-link">
+										<a href="/stat" class="nav-link">
 											<i class="far fa-circle nav-icon"></i>
-											<p>Commmandes</p>
+											<p>
+												Statistique de Commmandes</p>
 										</a>
 									</li>
-									<li class="nav-item">
-										<a href="/paiement" class="nav-link">
-											<i class="far fa-circle nav-icon"></i>
-											<p>Methodes de paiement</p>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a href="/platforme" class="nav-link">
-											<i class="far fa-circle nav-icon"></i>
-											<p>Platformes</p>
-										</a>
-									</li>
+
+
 								</ul>
 							</li>
 
-							<li class="nav-item">
-								<a href="#" class="nav-link">
-									<i class="nav-icon fas fa-chart-pie"></i>
-									<p>
-										Charts
-										<i class="right fas fa-angle-left"></i>
-									</p>
-								</a>
-								<ul class="nav nav-treeview">
-									<li class="nav-item">
-										<a href="pages/charts/chartjs.html" class="nav-link">
-											<i class="far fa-circle nav-icon"></i>
-											<p>ChartJS</p>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a href="pages/charts/flot.html" class="nav-link">
-											<i class="far fa-circle nav-icon"></i>
-											<p>Flot</p>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a href="pages/charts/inline.html" class="nav-link">
-											<i class="far fa-circle nav-icon"></i>
-											<p>Inline</p>
-										</a>
-									</li>
-								</ul>
-							</li>
-							<li class="nav-item">
-								<a href="#" class="nav-link">
-									<i class="nav-icon fas fa-tree"></i>
-									<p>
-										UI Elements
-										<i class="fas fa-angle-left right"></i>
-									</p>
-								</a>
-								<ul class="nav nav-treeview">
-									<li class="nav-item">
-										<a href="pages/UI/general.html" class="nav-link">
-											<i class="far fa-circle nav-icon"></i>
-											<p>General</p>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a href="pages/UI/icons.html" class="nav-link">
-											<i class="far fa-circle nav-icon"></i>
-											<p>Icons</p>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a href="pages/UI/buttons.html" class="nav-link">
-											<i class="far fa-circle nav-icon"></i>
-											<p>Buttons</p>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a href="pages/UI/sliders.html" class="nav-link">
-											<i class="far fa-circle nav-icon"></i>
-											<p>Sliders</p>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a href="pages/UI/modals.html" class="nav-link">
-											<i class="far fa-circle nav-icon"></i>
-											<p>Modals & Alerts</p>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a href="pages/UI/navbar.html" class="nav-link">
-											<i class="far fa-circle nav-icon"></i>
-											<p>Navbar & Tabs</p>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a href="pages/UI/timeline.html" class="nav-link">
-											<i class="far fa-circle nav-icon"></i>
-											<p>Timeline</p>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a href="pages/UI/ribbons.html" class="nav-link">
-											<i class="far fa-circle nav-icon"></i>
-											<p>Ribbons</p>
-										</a>
-									</li>
-								</ul>
-							</li>
+
 							<li class="nav-item">
 								<a href="#" class="nav-link">
 									<i class="nav-icon far fa-plus-square"></i>
@@ -396,7 +222,7 @@
 
 
 												<li class="nav-item">
-													<a href="/respo/Categories/affProduit" class="nav-link">
+													<a href="{{path("respo_Categories_aff_Produit", {id: categorie.id}) }}" class="nav-link">
 														<i class="nav-icon fas fa-th"></i>
 														<p>
 															{{categorie.nom}}
@@ -404,7 +230,6 @@
 														</p>
 													</a>
 												</li>
-
 
 											{% endfor %}
 
@@ -434,7 +259,7 @@
 												</a>
 											</li>
 											<li class="nav-item">
-												<a href="/promotion" class="nav-link">
+												<a href="/promotion/promo" class="nav-link">
 													<i class="far fa-circle nav-icon"></i>
 													<p>Promotion</p>
 												</a>
@@ -453,6 +278,24 @@
 									</li>
 
 								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="/commands" class="nav-link">
+									<i class="nav-icon "></i>
+									<p>
+										Commandes
+										<i class="fas fa-angle-left right"></i>
+									</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="/tab/clients" class="nav-link">
+									<i class="nav-icon fas fa-tree"></i>
+									<p>
+										Clients
+										<i class="fas fa-angle-left right"></i>
+									</p>
+								</a>
 							</li>
 
 
@@ -488,108 +331,186 @@
 				<div class="tab-content">
 
 					<div class="tab-empty">
-						<h2 class="display-4">
+						<div class="container-fluid">
 							<section class="content">
-								<div
-									class="container-fluid">
-									<!-- Small boxes (Stat box) -->
+								<div class="container-fluid">
+
+									<div class="content-header">
+										<div class="container-fluid">
+											<div class="row mb-2">
+												<div class="col-sm-6">
+													{% if app.user %}
+														<a href="{{path('profil_edit')}}">
+															<i class="bi bi-file-person"></i>
+														</a>
+														{% else %}ne peut pas modifier son profil
+													{% endif %}
+													<h1 class="m-0">Mon Profil</h1>
+													<h4>
+														{% if app.user %}
+															Bienvenue{{ app.user.nom}}
+															{{ app.user.prenom}}
+															à votre profile.
+														{% endif %}
+													</h4>
+												</div>
+											</div>
+										</div><hr>
+									</div>
 									<div class="row">
 										<div
-											class="col-lg-4 col-6">
+											class="col-lg-3 col-6">
 											<!-- small box -->
 											<div class="small-box bg-info">
 												<div class="inner">
-													<h3>Catalogue produit</h3>
+													<h3>Catégories</h3>
 
-													<p>Pourgérer votre catalogue de produit et leurs disponibilité.</p>
+													<p>Pour gérer votre catégories et leurs disponibilité.</p>
 												</div>
 												<div class="icon">
 													<i class="ion ion-bag"></i>
 												</div>
-												<a href="#" class="small-box-footer">Mon catalogue
+												<a href="/respo/Categories/cat" class="small-box-footer">Plus info
 													<i class="fas fa-arrow-circle-right"></i>
 												</a>
 											</div>
 										</div>
 										<!-- ./col -->
 										<div
-											class="col-lg-4 col-6">
+											class="col-lg-3 col-6">
 											<!-- small box -->
 											<div class="small-box bg-success">
 												<div class="inner">
-													<h3>voir mes commandes
+													<h3>Produits
 													</h3>
 
-													<p>Pour suivre vos commandes du jour , l'historique ou celles à venir.</p>
+													<p>Pour gérer votre produits et leurs disponibilité.</p>
 												</div>
 												<div class="icon">
 													<i class="ion ion-stats-bars"></i>
 												</div>
-												<a href="#" class="small-box-footer">Mes commandes
+												<a href="/respo/Categories/produit" class="small-box-footer">Plus info
 													<i class="fas fa-arrow-circle-right"></i>
 												</a>
 											</div>
 										</div>
 										<!-- ./col -->
 										<div
-											class="col-lg-4 col-6">
+											class="col-lg-3 col-6">
+											<!-- small box -->
+											<div class="small-box bg-warning">
+												<div class="inner">
+													<h3>Commandes</h3>
+
+													<p>Pour suivre vos commandes du jour , l'historique ou celles à venir.</p>
+												</div>
+												<div class="icon">
+													<i class="ion ion-person-add"></i>
+												</div>
+												<a href="/commands" class="small-box-footer">Plus info
+													<i class="fas fa-arrow-circle-right"></i>
+												</a>
+											</div>
+										</div>
+										<!-- ./col -->
+										<div
+											class="col-lg-3 col-6">
 											<!-- small box -->
 											<div class="small-box bg-danger">
 												<div class="inner">
-													<h3>Planifier ma production</h3>
+													<h3>Promotion</h3>
 
-													<p>Pour anticper votre production des jours à venir.</p>
+													<p>Pour gérer votre promotion et leurs disponibilité.</p>
 												</div>
 												<div class="icon">
 													<i class="ion ion-pie-graph"></i>
 												</div>
-												<a href="#" class="small-box-footer">Ma production
+												<a href="/promotion/promo" class="small-box-footer">Plus  info
 													<i class="fas fa-arrow-circle-right"></i>
 												</a>
 											</div>
 										</div>
 										<!-- ./col -->
 									</div>
+
+									<div class="row">
+										<div class="col-md-12">
+											<div class="card">
+												<div class="card-header">
+													<h5 class="card-title">Statistique Clients</h5>
+												</div>
+												<!-- /.card-header -->
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-8">
+															<div class="chart">
+																<canvas id="Clients" height="180" style="height: 180px;" color="white"></canvas>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<p class="text-center">
+																<strong>Autres Statistiques</strong>
+															</p>
+															<div class="progress-group" color="#00bc8c">
+
+																<a href="#" class="colorr">Les Statistiques de produits
+																	<i class="fas fa-arrow-circle-right"></i>
+																</a>
+															</div>
+															<!-- /.progress-group -->
+															<div class="progress-group">
+																<a href="/categories" class="color">
+																	Les Statistiques de commandes
+																	<i class="fas fa-arrow-circle-right"></i>
+																</a>
+
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- /.card -->
+										</div>
+										<!-- /.col -->
+									</div>
 								</div>
 							</section>
-						</h2>
-					</div>
-					<div class="tab-loading">
-						<div>
-							<h2 class="display-4">Tab is loading
-								<i class="fa fa-sync fa-spin"></i>
-							</h2>
+						</div>
+						<div class="tab-loading">
+							<div>
+								<h2 class="display-4">Tab is loading
+									<i class="fa fa-sync fa-spin"></i>
+								</h2>
+							</div>
 						</div>
 					</div>
 				</div>
+				<aside class="control-sidebar control-sidebar-dark"></aside>
+
 			</div>
-
-			<!-- /.content-wrapper -->
-
-
-			<!-- Control Sidebar -->
-			<aside
-				class="control-sidebar control-sidebar-dark"><!-- Control sidebar content goes here -->
-			</aside>
-			<!-- /.control-sidebar -->
 		</div>
-		<!-- ./wrapper -->
-
-		<!-- jQuery -->
-		<script src="plugins/jquery/jquery.min.js"></script>
-		<!-- jQuery UI 1.11.4 -->
-		<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-		<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js" integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script>
-			$.widget.bridge('uibutton', $.ui.button)
+			let Clients = document.querySelector("#Clients")
+let ClientGraph = new Chart(Clients, {
+type: "bar",
+data: {
+labels: {{ dates|raw }},
+datasets: [
+{
+label: "répartition des clients",
+data: {{ clientcount|raw }},
+backgroundColor: [
+"#dc3545", "#17a2b8"
+],
+color: "white"
+}
+]
+}
+})
 		</script>
-		<!-- Bootstrap 4 -->
-		<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<!-- overlayScrollbars -->
-		<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-		<!-- AdminLTE App -->
-		<script src="dist/js/adminlte.js"></script>
-		<!-- AdminLTE for demo purposes -->
-		<script src="dist/js/demo.js"></script>
+		<script src="plugins/jquery/jquery.min.js"></script><!-- jQuery UI 1.11.4 --><script src="plugins/jquery-ui/jquery-ui.min.js"></script><!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip --><script>
+			$.widget.bridge('uibutton', $.ui.button)
+		</script><!-- Bootstrap 4 --><script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script><!-- overlayScrollbars --><script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script><!-- AdminLTE App --><script src="dist/js/adminlte.js"></script><!-- AdminLTE for demo purposes --><script src="dist/js/demo.js"></script>
 	</body>
 </html>

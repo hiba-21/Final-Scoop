@@ -21,12 +21,12 @@ class InfoBoutiqueType extends AbstractType
             ->add('nom', TextType::class, [
                 "attr" => [
                     "class" => "form-control"
-                ]
+                ], 'label' => 'nom'
             ])
             ->add('descrip', TextareaType::class, [
                 "attr" => [
                     "class" => "form-control"
-                ]
+                ], 'label' => 'description'
             ])
             ->add('type', ChoiceType::class, [
                 "attr" => [
@@ -45,12 +45,12 @@ class InfoBoutiqueType extends AbstractType
             ->add('capital', NumberType::class, [
                 "attr" => [
                     "class" => "form-control"
-                ]
+                ], 'label' => 'capital'
             ])
             ->add('tel', NumberType::class, [
                 "attr" => [
                     "class" => "form-control"
-                ]
+                ], 'label' => 'tel'
             ])
             ->add('siret', TextType::class, [
                 "attr" => [
@@ -70,7 +70,7 @@ class InfoBoutiqueType extends AbstractType
             ->add('code_postal', NumberType::class, [
                 "attr" => [
                     "class" => "form-control"
-                ]
+                ], 'label' => 'code postal'
             ])
             ->add('ville', TextType::class, [
                 "attr" => [

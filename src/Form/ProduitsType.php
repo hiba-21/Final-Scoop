@@ -19,9 +19,9 @@ class ProduitsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', TextType::class)
-            ->add('description', TextareaType::class)
-            ->add('prix', NumberType::class)
+            ->add('nom', TextType::class, ['label' => 'nom'])
+            ->add('description', TextareaType::class, ['label' => 'description'])
+            ->add('prix', TextType::class, ['label' => 'prix'])
             ->add('categories', EntityType::class, [
                 'class' => Categories::class
             ])
@@ -33,6 +33,7 @@ class ProduitsType extends AbstractType
                 'mapped' => false,
                 'required' => false
             ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

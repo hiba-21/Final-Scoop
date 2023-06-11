@@ -7,11 +7,10 @@ use App\Entity\InfoBoutique;
 use App\Form\InsClientFormType;
 use App\Repository\CategoriesRepository;
 use App\Repository\InfoBoutiqueRepository;
+use App\Repository\PannierRepository;
 use App\Repository\ProduitsRepository;
 use App\Repository\SupplementsRepository;
-use Entity\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,12 +21,24 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class InsclientController extends AbstractController
 {
     /**
+     * @var ProduitsRepository
+     * @var CategoriesRepository
+     */
+    private $ProduitsRepository;
+    private $CategoriesRepository;
+    public function __construct(ProduitsRepository $ProduitsRepository, CategoriesRepository $CategoriesRepository)
+    {
+        $this->ProduitsRepository = $ProduitsRepository;
+        $this->CategoriesRepository = $CategoriesRepository;
+    }
+    /**
      * @Route("/appClient", name="client")
      */
     public function show(ProduitsRepository $produitsRepository, InfoBoutiqueRepository $infoBoutiqueRepository, CategoriesRepository $categoriesRepository, SupplementsRepository $supplementsRepository)
     {
 
         return $this->render('Client/test.html.twig', [
+
             'produits' => $produitsRepository->findBy(['active' => true], ['id' => 'DESC']),
             'boutique' => $infoBoutiqueRepository->findAll(),
             'categories' => $categoriesRepository->findBy(['active' => true], ['id' => 'DESC']),
@@ -35,24 +46,53 @@ class InsclientController extends AbstractController
         ]);
     }
     /**
-     * @Route("/affProduit", name="affProduit")
+     * @Route("/produit", name="produit")
      */
-    public function showPro(ProduitsRepository $produitsRepository, InfoBoutiqueRepository $infoBoutiqueRepository, CategoriesRepository $categoriesRepository)
+    public function produit(ProduitsRepository $produitsRepository, InfoBoutiqueRepository $infoBoutiqueRepository, CategoriesRepository $categoriesRepository): Response
     {
-
+        $produits = $produitsRepository->findAll();
+        dump($produits);
         return $this->render('Client/produit.html.twig', [
-            'produits' => $produitsRepository->findBy(['active' => true], ['id' => 'DESC']),
+            'produits' => $produits,
             'boutique' => $infoBoutiqueRepository->findAll(),
+            'categories' => $categoriesRepository->findBy(['active' => true], ['id' => 'DESC']),
+        ]);
+    }
+    /**
+     * @Route("/afpd/{id}", name="afpd")
+     * @param $id
+     */
+    public function showPro(int $id, ProduitsRepository $produitsRepository, InfoBoutiqueRepository $infoBoutiqueRepository, CategoriesRepository $categoriesRepository): Response
+    {
+        $produitcategories = $produitsRepository->findOneByCategories($id);
+        dump($produitcategories);
+        return $this->render('Client/affproduit.html.twig', [
+            'produitcategories' => $produitcategories,
+            'produits' => $produitsRepository->findBy(['active' => true], ['id' => 'DESC']),
+
             'categories' => $categoriesRepository->findBy(['active' => true], ['id' => 'DESC']),
         ]);
     }
     /**
      * @Route("/sup", name="sup")
      */
-    public function showsup(SupplementsRepository $supplementsRepository)
+    public function showsup(SupplementsRepository $supplementsRepository, ProduitsRepository $produitsRepository, InfoBoutiqueRepository $infoBoutiqueRepository, CategoriesRepository $categoriesRepository)
     {
         return $this->render('Client/sup.html.twig', [
-            'supplements' => $supplementsRepository->findAll(['active' => true], ['id' => 'prix'])
+            'supplements' => $supplementsRepository->findAll(['active' => true], ['id' => 'prix']),
+            'produits' => $produitsRepository->findBy(['active' => true], ['id' => 'DESC']),
+
+            'categories' => $categoriesRepository->findBy(['active' => true], ['id' => 'DESC']),
+        ]);
+    }
+    /**
+     * @Route("/etat", name="etat")
+     */
+    public function showetat(PannierRepository $pannierRepository)
+    {
+        return $this->render('Client/Etat.html.twig', [
+            'pannier' => $pannierRepository->findBy(['activer' => true], ['id' => 'DESC']),
+
         ]);
     }
     /**

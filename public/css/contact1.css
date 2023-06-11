@@ -42,6 +42,7 @@ body {
     .page-header-section {
         background: #fae8e7;
         padding: 50px 0;
+        margin: 70px;
     }
     .container {
         width: 100%;
@@ -68,6 +69,7 @@ body {
     } 
     .col-lg-3{
         max-width: 200%;
+        margin-top: -120px;
         max-height: 100%;
         position: relative;
         width: 100%;
@@ -88,6 +90,7 @@ body {
         color: #283a5e;
         font-weight: 600;
         text-align: -webkit-match-parent;
+        margin: 20px;
     }
     .h1{
         clear: both;
@@ -97,17 +100,9 @@ body {
         line-height: 1.2;
         margin-top: 0;
     }
-   
-    p {
-        
-        display: block;
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start: 0px;
-        margin-inline-end: 0px;
-        margin-top: 0;
-        margin-bottom: 1.5em;
-    }
+  .col-lg-1>h2{
+    font-family: cursive;;
+  }
     .post-1{
         width: 100%;
     }
@@ -120,10 +115,10 @@ body {
         background: transparent;
     }
     img {
-        width:300px ;
+        width:400px ;
         vertical-align: middle;
         border-style: none;
-        margin-right: 20px;
+        margin-left: 100%;
         
         
     
@@ -477,6 +472,7 @@ body {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
+            color: #18bc9c;
         }
         .elementor-element.elementor-element-1b1b .elementor-icon-map-content {
             -webkit-box-flex: 1;

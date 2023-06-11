@@ -1,0 +1,17 @@
+html{
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+    color: white;
+}
+.col .btn{
+    background-color: #17a2b8;
+    color: white;
+  }
+   #edit {
+     background-color: #17a2b8 !important;
+     color: white;
+  }
+  #supprimer {
+    background-color: #E5383B !important;
+  }

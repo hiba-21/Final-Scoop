@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Entity\User;
 use App\Form\CommentType;
+use App\Repository\CommentRepository;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +22,7 @@ class AvisController extends AbstractController
      * @return Response
      */
 
-    public function new(Request $request): Response
+    public function new(Request $request, CommentRepository $commentRepository): Response
     {
 
         $Comment = new Comment();
@@ -36,10 +37,10 @@ class AvisController extends AbstractController
             $em->persist($Comment);
             $em->flush();
         }
-
+        dump($Comment);
         return $this->render('home/avis1.html.twig', [
             'form' => $form->createView(),
-            'comment' => $Comment,
+            'comments' => $commentRepository->findAll(),
 
         ]);
     }

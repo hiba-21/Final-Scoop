@@ -18,6 +18,17 @@ class ProduitsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Produits::class);
     }
+    /**
+     * Returns number of "produits" per day
+     * @return void
+     */
+    public function countByDate()
+    {
+        $query = $this->createQueryBuilder('a')
+            ->select('SUBSTRING(a.creaAt, 1, 10) as dateProduit, Count(a) as count')
+            ->groupBy('dateProduit');
+        return $query->getQuery()->getResult();
+    }
 
     // /**
     //  * @return Produits[] Returns an array of Produits objects
@@ -47,4 +58,13 @@ class ProduitsRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findOneByCategories($value): array
+    {
+        return $this->createQueryBuilder('p')
+
+            ->andWhere('p.categories = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
 }

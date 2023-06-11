@@ -1,150 +1,278 @@
-@import url('https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple');
-html,
-body{
-    background-color: #fff;
-    color: rgb(117, 113, 113);
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 200;
-    height: 10vh;
-    margin: 0;
-   }
-.banner{
-    background:url(/img/acceuill.jpg) no-repeat;
-    background-size: 100%;
-    background-position: center, center;
-    position: relative;
-    object-fit: contain;
-    height: 600px;
-    width: auto;
-}
-.title{
-    font-size: 50px;
-    margin-top: 0;
-    color: white;
-}
+.nav{
+    display: flex;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+   justify-content: space-between;
+   margin-left: 20px;
+   margin-right: 20px;
+   align-items: center;
 
-.navbar-brand img {
-    transition: opacity 0.3s, visibiliy 0.3s;
-    max-width:60px;
 }
-.split-text{
-    box-sizing: border-box;
-    font-size: 50px;
-    color: #666;
-    font-family: Georgia, serif;
-    text-align: left;
-    font-family: 'Poppins';
-    font-weight: 300;
-    line-height: 1.2em;
-    font-size: 45px;
-    visibility: visible;
-    margin-top: 50px;
-}
-.btn .btn-solid{
-    background-color: #70c1b3;
-    border-color: #70c1b3;
-    color: rgb(255, 255, 255);
-    border-radius: 50em;
-}
-.textwidget .custom-html-widget a {
-        color: #666;
-        text-decoration: none;
-        background-color: transparent;
-}
-.bottom{
-    margin: 40px auto;
-}
-.buttom1{
-    margin: 35px auto;
-}
+.blob{
+    position: absolute;
+    right: 13px;
+    z-index: -1;
+    width: 1000px;
 
-    .btn-solid {
-       
-        font-size: 16px;
-        text-transform: uppercase;
-        color: #d6d2d2;
-        background-color: #283a5e;
-        border-radius: 30px 30px 30px 30px;
-        font-family: "Roboto", Sans-serif;
-        font-weight: 600;
-        user-select: none;
-        margin-left: 40%;}
-        .btn-solid1 {
-       
-            font-size: 16px;
-            text-transform: uppercase;
-            color: #d6d2d2;
-            background-color: #283a5e;
-            border-radius: 30px 30px 30px 30px;
-            font-family: "Roboto", Sans-serif;
-            font-weight: 600;
-            user-select: none;
-            margin-left: 40%;}
-    .btn-solid .btn-txt{
-    white-space: pre;
-    align-items: flex-start;
-    text-align: center;
-    color:white;
-    margin: 57px
-
-    }
-    .btn-solid1 .btn-txt{
-        white-space: pre;
-        align-items: flex-start;
-        text-align: center;
-        color:white;
-        margin: 10px
     
-        }
-    .content{
-        margin: auto;
-        padding-left: 20%;
-    padding-top: 25%;
-    }
-    .service{
-        background: linear-gradient(#ffcdca, white);
-        font-family: 'Josefin Slab', serif;
-        margin-top: 50px;
+}
+h4{
+    color: rgb(65, 65, 64);
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.nav:hover{
+    cursor: pointer;
+}
+.logoImg{
+ width: 107px;
+ margin-left: 16px;
+height: 89px;
+}
+.item{
+    display: flex;
+    margin: 20px;
+   justify-content: space-between;
+   padding: 30px;
+   font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 28px;
+   align-items: center;
+   margin-left: 700px;
 
-       
-        
-      }
-     .service h1{
-        font-family: "Roboto", Sans-serif;
-        font-size: 52px;
-        margin-bottom: 0px;
-        text-align: center;
-      }
-      .contenue{
-        display: flex;
-        text-align: center;
-        width: auto;
-        justify-content: center;
-        background: #fff;
- 
+}
+.item>div{
+    padding-right: 20px;
+}
+.item>a{
+    padding-right: 30px;
+    transition: transform 50ms ease-out;
+   
+    
+   /* opacity: 0.7;*/
+}
+.item>a:hover{
+    transform: translateY(-5px);
+  
+}
+.ShoppingCart{
+    width: 54px;
+height: 50px;
+}
+.loginBtn{
+    width: 99px;
+  height: 49px;
+  font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 20px;
+  border: none;
 
-  padding: 50px;
-  line-height: 20px;
-  color: #8e8b8b;
-  position: relative;
+background: #f99746;
+border-radius: 25px;
+}
+.loginBtn:hover{
+    cursor: pointer;
+        background: #FFBBFC ;
+}
+.signUpBtn{
+    width: 99px;
+  height: 49px;
+  font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 20px;
+  border: none;
 
-      }
-      .taha{
-        border-style: solid;
-        border-image: 
-          linear-gradient(
-            to bottom, 
-            #283a5e, 
-            rgba(218, 209, 209, 0)
-          ) 1 100%;
-      
-        margin-right: 50px;
-        margin-left: 50px;
-        margin-bottom: 10px;
-        background-color: white;
-        border-style: solid;
-      }
-    span {
-        position: relative;
+background: #f99746;
+border-radius: 25px;
+}
+.signUpBtn:hover{
+    
+        cursor: pointer;
+        background: #FFBBFC ;
+}
+.navBtn:hover{
+    cursor: pointer;
+}
+.homeSecondSection{
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+}
+.LeftSection{
+    margin-left: 80px;
+    margin-top: 20px;
+    margin: 200px;
+   
+}
+.LeftSection>h1{
+    color: #010f2f; 
+    font-family: 'Trocchi', serif;
+    font-size: 60px; 
+    font-weight: lighter;
+    line-height: 70px; 
+    margin: 0;
+}
+.orderNow{
+    width: 300px;
+height: 69px;
+background: #f99746;
+border-radius: 50px;
+border: none;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 28px;
 
-    }
+}
+.orderNow:hover{
+    cursor: pointer;
+    background: #FFBBFC ;
+}
+.plus{
+    width: 150px;
+    height: 69px;
+    background: #f99746;
+    border-radius: 50px;
+    border: none;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+}
+.plus:hover{
+    cursor: pointer;
+    background: #FFBBFC ;
+}
+.service{
+    background: linear-gradient(#d3dcf8, white);
+    font-family: 'Josefin Slab', serif;
+    margin-top: 50px;
+
+   
+    
+  }
+ .service h1{
+    font-family: "Roboto", Sans-serif;
+    font-size: 52px;
+    margin-bottom: 0px;
+    text-align: center;
+  }
+  .contenue, .caroulix-item{
+    display: flex;
+    text-align: center;
+    width: auto;
+    justify-content: center;
+    background: #fff;
+
+
+padding: 50px;
+line-height: 20px;
+color: #8e8b8b;
+position: relative;
+
+  }
+  .con{
+      position: relative;
+      width: 1000px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin: 20px;
+      margin-left: 250px;
+  }
+  .con .card{
+      position: relative;
+      height: 250px;
+      background: #fff;
+      display: flex;
+      width: 45%; 
+      margin: 30px 0; 
+  }
+  .con .card .imgBx{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #333;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      transition: 0.5s ease-in-out;
+  }
+  .con .card:hover .imgBx{
+width: 150px;
+height: 150px;
+left: -75px;
+top: calc(50% - 75px);
+transition: 0.5s ease-in-out;
+background: #ff0075;  
+}
+.con .card .imgBx:before{
+    content: attr(data-text);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: centre;
+    font-size: 6em;
+    color: rgba(255,255,255,.05);
+    font-weight: 700;
+}
+.con .card .imgBx img {
+    max-width: 100px;
+    transition: 0.5s ease-in-out;
+}
+.con .card:hover .imgBx img{
+max-width: 75px;
+}
+.con .card .ser{
+position: absolute;
+right: 0;
+width: calc(100% -75%);
+height: 100%;
+padding: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.con .card .ser h3{
+margin-bottom: 5px;
+font-size: 24px ;
+}
+
+
+  .ser{
+    border-style: solid;
+    border-image: 
+      linear-gradient(
+        to bottom, 
+        #283a5e, 
+        rgba(218, 209, 209, 0)
+      ) 1 100%;
+  
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-style: solid;
+  }
+span {
+    position: relative;
+
+}

@@ -21,6 +21,18 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CategoriesController extends AbstractController
 {
+     /**
+    * @var ProduitsRepository
+    * @var CategoriesRepository
+    */
+    private $ProduitsRepository;
+    private $CategoriesRepository;
+    public function __construct(ProduitsRepository $ProduitsRepository,CategoriesRepository $CategoriesRepository)
+    {
+        $this->ProduitsRepository = $ProduitsRepository;
+        $this->CategoriesRepository = $CategoriesRepository;
+    }
+
     /**
      * @Route("/cat", name="home")
      */
@@ -33,19 +45,26 @@ class CategoriesController extends AbstractController
     /**
      * @Route("/produit", name="produit")
      */
-    public function produit(CategoriesRepository $categoriesRepository, ProduitsRepository $produitsRepository): Response
+    public function produit(ProduitsRepository $produitsRepository): Response
     {
+        $produits = $produitsRepository->findAll();
+        dump($produits);
         return $this->render('responsable/dashboard/produit.html.twig', [
-            'categories' => $categoriesRepository->findAll(),  'produits' => $produitsRepository->findAll()
+            'produits' => $produits
         ]);
     }
     /**
-     * @Route("/affProduit", name="affProduit")
+     * @Route("/affProduit/{id}", name="aff_Produit")
+     * @param $id
      */
-    public function showPro(ProduitsRepository $produitsRepository, CategoriesRepository $categoriesRepository)
+    public function showPro(int $id, ProduitsRepository $produitsRepository, CategoriesRepository $categoriesRepository): Response
+
     {
+        $produitcategories = $produitsRepository->findOneByCategories($id);
+        dump($produitcategories);
 
         return $this->render('respo/AffProduit.html.twig', [
+            'produitcategories' => $produitcategories,
             'produits' => $produitsRepository->findBy(['active' => true], ['id' => 'DESC']),
 
             'categories' => $categoriesRepository->findBy(['active' => true], ['id' => 'DESC']),
@@ -64,7 +83,11 @@ class CategoriesController extends AbstractController
             $categorie->setActive(false);
             $em = $this->getDoctrine()->getManager();
             $em->persist($categorie);
+       
             $em->flush();
+            return new Response(
+                ' and new category with id: '.$categorie->getId()
+            );
             return $this->redirectToRoute("respo_Categories_home");
         }
         return $this->render('respo/categories/ajout.html.twig', [

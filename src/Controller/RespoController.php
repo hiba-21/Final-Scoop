@@ -6,6 +6,8 @@ use App\Entity\Categories;
 use App\Entity\Image;
 use App\Form\CategoriesType;
 use App\Entity\Produits;
+use App\Entity\Users;
+
 use App\Form\ProduitsType;
 use App\Repository\CategoriesRepository;
 use App\Repository\ProduitsRepository;
@@ -29,6 +31,15 @@ class RespoController extends AbstractController
         ]);
     }
     /**
+     * @Route("/produit", name="produit")
+     */
+    public function produit(CategoriesRepository $categoriesRepository, ProduitsRepository $produitsRepository): Response
+    {
+        return $this->render('responsable/dashboard/produit.html.twig', [
+            'categories' => $categoriesRepository->findAll(),  'produits' => $produitsRepository->findAll()
+        ]);
+    }
+    /**
      * @Route("/categories/ajout", name="categories_ajout")
      */
     public function ajoutCategorie(Request $request): Response
@@ -48,6 +59,7 @@ class RespoController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+  
     /**
      * @Route("/produit/ajout", name="produit_ajout")
      */
@@ -57,7 +69,7 @@ class RespoController extends AbstractController
         $produits = new Produits;
         $form = $this->createForm(ProduitsType::class, $produits);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
             //on recupére les images transmises
             $images = $form->get('images')->getData();
             //ON BOUCLE SUR LES IMAGES 
@@ -81,7 +93,7 @@ class RespoController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($produits);
             $em->flush();
-            return $this->redirectToRoute("respo_home");
+            return $this->redirectToRoute("respo_produit");
         }
         return $this->render('respo/produit/ajout.html.twig', [
             'form' => $form->createView(),

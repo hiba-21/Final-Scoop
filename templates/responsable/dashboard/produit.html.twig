@@ -1,19 +1,22 @@
-<html>
+<html >
 	<head>
 		<title>
 			{% block title %}Gérer les produits
 
 			{% endblock %}
 		</title>
+		<link rel="stylesheet" href="/css/categorie.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/css/axentix.min.css">
 	</head>
 	<body>
 		{% block body %}
 
 			<h1>Gérer les Produits</h1>
-			<a href="{{path("respo_Categories_ajoutProduit")}}" class="btn blue">
-				Ajouter un produit
-			</a>
+			<div class="col">
+				<a href="{{path("respo_Categories_ajoutProduit")}}" class="btn blue">
+					Ajouter un produit
+				</a>
+			</div>
 			<div class="responsive-table">
 				<table class="table striped">
 					<thead>
@@ -40,8 +43,7 @@
 									{% for image in produit.images %}
 										<div>
 											<img src="{{ asset('/uploads/' ~ image.nom)}}" alt="Image" width="150">
-											<a href="{{ path('respo_Categories_produit_delete_image', {'id': image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">
-												</a>
+											<a href="{{ path('respo_Categories_produit_delete_image', {'id': image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}"></a>
 										</div>
 									{% endfor %}
 								</td>
@@ -55,11 +57,11 @@
 									</label>
 								</td>
 								<td class="text-center">
-									<a href="{{path("respo_Categories_modifierProduit", {id: produit.id}) }}" class="btn blue">
+									<a href="{{path("respo_Categories_modifierProduit", {id: produit.id}) }}" class="btn blue" id="edit">
 
 										Modifier</a>
 
-									<a href="#" class="btn rounded-1 primary press modal-trigger" data-target="modal-delete" data-id="{{produit.id}}" data-nom="{{produit.nom}}">Supprimer</a>
+									<a href="#" class="btn rounded-1 primary press modal-trigger" data-target="modal-delete" data-id="{{produit.id}}" data-nom="{{produit.nom}}" id="supprimer">Supprimer</a>
 
 								</td>
 
@@ -89,7 +91,8 @@
 		{% endblock %}
 		{% block javascripts %}
 			<script>
-				window.onload = () => { let modal = new Axentix.Modal('#modal-delete');
+				window.onload = () => {
+let modal = new Axentix.Modal('#modal-delete');
 let activer = document.querySelectorAll("[type=checkbox]")
 for (let bouton of activer) {
 bouton.addEventListener("click", function () {

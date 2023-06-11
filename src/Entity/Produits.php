@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProduitsRepository::class)
@@ -23,11 +23,13 @@ class Produits
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(pattern="/[a-z]/")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(pattern="/[a-z]/")
      */
     private $description;
 
@@ -39,6 +41,7 @@ class Produits
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Regex(pattern="/[0-9]{8}/")
      */
     private $prix;
 
@@ -70,9 +73,24 @@ class Produits
      */
     private $images;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Promotion::class, mappedBy="produits")
+     */
+    private $promotions;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Pannier::class, mappedBy="produits", orphanRemoval=true)
+     */
+    private $panniers;
+
+
+
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->promotions = new ArrayCollection();
+        $this->panniers = new ArrayCollection();
     }
 
 
@@ -118,12 +136,12 @@ class Produits
 
 
 
-    public function getPrix(): ?int
+    public function getPrix(): ?string
     {
         return $this->prix;
     }
 
-    public function setPrix(int $prix): self
+    public function setPrix(string $prix): self
     {
         $this->prix = $prix;
 
@@ -197,6 +215,63 @@ class Produits
             // set the owning side to null (unless already changed)
             if ($image->getProduits() === $this) {
                 $image->setProduits(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Promotion[]
+     */
+    public function getPromotions(): Collection
+    {
+        return $this->promotions;
+    }
+
+    public function addPromotion(Promotion $promotion): self
+    {
+        if (!$this->promotions->contains($promotion)) {
+            $this->promotions[] = $promotion;
+            $promotion->addProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removePromotion(Promotion $promotion): self
+    {
+        if ($this->promotions->removeElement($promotion)) {
+            $promotion->removeProduit($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Pannier[]
+     */
+    public function getPanniers(): Collection
+    {
+        return $this->panniers;
+    }
+
+    public function addPannier(Pannier $pannier): self
+    {
+        if (!$this->panniers->contains($pannier)) {
+            $this->panniers[] = $pannier;
+            $pannier->setProduits($this);
+        }
+
+        return $this;
+    }
+
+    public function removePannier(Pannier $pannier): self
+    {
+        if ($this->panniers->removeElement($pannier)) {
+            // set the owning side to null (unless already changed)
+            if ($pannier->getProduits() === $this) {
+                $pannier->setProduits(null);
             }
         }
 

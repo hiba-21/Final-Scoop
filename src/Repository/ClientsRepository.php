@@ -35,6 +35,17 @@ class ClientsRepository extends ServiceEntityRepository implements PasswordUpgra
         $this->_em->persist($user);
         $this->_em->flush();
     }
+    /**
+     * Returns number of "Clients" per day
+     * @return void
+     */
+    public function countByDate()
+    {
+        $query = $this->createQueryBuilder('a')
+            ->select('SUBSTRING(a.creatAt, 1, 10) as dateClients, Count(a) as count')
+            ->groupBy('dateClients');
+        return $query->getQuery()->getResult();
+    }
 
     // /**
     //  * @return Clients[] Returns an array of Clients objects

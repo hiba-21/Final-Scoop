@@ -1,0 +1,27 @@
+body{
+    margin-left: 20px;
+    margin-right: 20px;
+    
+}
+
+   .card {
+       margin-left: 200px;
+       margin-right: 200px;
+
+   }
+
+.card-header {
+    background-color: #d5e0e2 !important;}
+    .card-title, .col-sm-2, .btn, .col-form-label{
+    color: rgb(122, 120, 120) !important;
+
+}
+.card-footer button {
+    background-color: #d5e0e2 !important;}
+    
+.card-body{
+    margin-left: 200px;
+}
+.card-title{
+    margin-left: 300px;
+}

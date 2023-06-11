@@ -1,101 +1,209 @@
-{% block title
- %}{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
 
-<link
-rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/css/axentix.min.css">
-<!-- CSS only -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/css/client.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/css/axentix.min.css">
-<link rel="icon" href="img/scoop.png" type="image/x-icon"/>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"/>
-<link rel="stylesheet" href="css/mdb.min.css"/>
-<link rel="stylesheet" href="css/pannier.css"/>
+		<link rel="stylesheet" href="/css/panier.css"/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/css/axentix.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"/>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"/>
+		<link
+		rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/css/axentix.min.css">
+		<!-- CSS only -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+		<link rel="stylesheet" href="/css/client.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/css/axentix.min.css">
+	</head>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-{% block body %}
-	<!-- Navbar -->
-	<nav
-		class="navbar navbar-expand-lg navbar-light bg-light">
-		<!-- Container wrapper -->
-		<div
-			class="container-fluid">
-			<!-- Toggle button -->
-			<button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<i class="fas fa-bars"></i>
-			</button>
+	<body>
+		<div class="home">
+			<nav class="nav">
+				<div class="logo">
+					<a href="/appClient">
+						<img src="img/scoop.png" class="logoImg"/>
+					</a>
+				</div>
+				<div class="item">
+					<div>
+						<a href="appClient">
+							Accueil
+						</a>
+					</div>
+					<div>
+						<a href="/produit">
+							Menu
+						</a>
+					</div>
+					<div>
+						<a href="/panier">
+							<img src="/img/Shopping Cart.png" class="ShoppingCart"/>
+						</a>
+					</div>
+					<div>
+						<a href="/conclient">
+							<button class="loginBtn navBtn">Connexion</button>
+						</a>
+					</div>
+					<div>
+						<a href="/insclient">
+							<button class="signUpBtn navBtn">S'inscrire</button>
+						</a>
+					</div>
+					<div>
+						<a href="/etat">
+							<button class="signUpBtn navBtn">L'etat</button>
+						</a>
+					</div>
+				</div>
+			</nav>
 
-			<!-- Collapsible wrapper -->
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<!-- Navbar brand -->
-				<!-- Left links -->
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0"> <li class="nav-item">
-						<a class="nav-link" href="#">S'inscrire</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Se Connecter</a>
-					</li>
-				</ul>
-				<!-- Left links -->
+			{% if items | length >0 %}
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Produit</th>
+							<th>Prix</th>
+							<th>Quantité</th>
+							<th>Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in items %}
+							<tr>
+								<td>{{item.produit.nom}}</td>
+								<td>{{item.produit.prix}}</td>
+								<td>{{item.quantity}}</td>
+								<td>{{item.produit.prix * item.quantity}}</td>
+								<td>
+									<a href="{{path('panier_remove',{'id': item.produit.id})}}" class="btn btn-danger btn-sm">
+										<i class="fas fa-trash"></i>
+									</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="3" class="text-right">Total :
+							</td>
+							<td>{{total}}</td>
+							<td></td>
+						</tr>
+					</tfoot>
+				</table>
+
+				<div class="button">
+
+
+					<button class="login navBtn  modal-trigger" data-target="modal-example">Valider</button>
+
+
+					<a href="/produit">
+						<button class="signUp navBtn">Continuer achats</button>
+					</a>
+				</div>
 			</div>
-			<!-- Collapsible wrapper -->
+		{% else %}
+			<div class="main">
+				<p>Surprise c'est vide !</p>
+			</div>
+		{% endif %}
+		<div class="modal shadow-1 white falling" id="modal-example" data-ax="modal">
+			<div class="modal-header LeftSection homeSecondSection">
+				<h3>Passer la commande</h3>
+			</div>
 
-			<!-- Right elements -->
-			<div
-				class="d-flex align-items-center">
-				<!-- Icon -->
-				<a class="text-reset me-3" href="/panier">
-					<i class="fas fa-shopping-cart"></i>
-				</a>
-				<a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="/panier" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false"></a>
-				<a class="navbar-brand mt-2 mt-lg-0" href="#">
-					<img src="/img/scoop.png" height="50" alt="" loading="lazy"/>
-				</a>
+			<div class="divider"></div>
+
+			<div class="modal-content">
+				{% if app.user %}
+					<div class="homeSecondSection">
+						<div class="LeftSection">
+							<h4>Nom:
+								{{ app.user.Nom}}</h4>
+							<br>
+							<h4>
+								Adresse:
+								{{ app.user.ville}}</h4>
+							<br>
+							<h4>
+								Numero:
+								{{ app.user.numero}}</h4>
+						</div>
+					</div>
+				{% endif %}
+				<br/>
+				<div class="panier">
+					{% if items | length >0 %}
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Produit</th>
+									<th>Prix</th>
+									<th>Quantité</th>
+									<th>Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for item in items %}
+									<tr>
+										<td>{{item.produit.nom}}</td>
+										<td>{{item.produit.prix}}</td>
+										<td>{{item.quantity}}</td>
+										<td>{{item.produit.prix * item.quantity}}</td>
+									{% endfor %}
+								</tbody>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="3" class="text-right">Total :
+									</td>
+									<td>{{total}}</td>
+									<td></td>
+								</tr>
+							</tfoot>
+
+						</table>
+
+					{% endif %}
+
+
+				</div>
 
 			</div>
-			<!-- Right elements -->
+
+			<div class="divider"></div>
+
+			<div class="modal-footer">
+				<a href="" class="login navBtn">Confirmer</a>
+				<button data-target="modal-example" class="ml-auto btn shadow-1 rounded-1 small primary modal-trigger">Close</button>
+			</div>
 		</div>
-		<!-- Container wrapper -->
-	</nav>
-	<!-- Navbar -->
+		<script src="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/js/axentix.min.js"></script>
 
-	{% if items | length >0 %}
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Produit</th>
-					<th>Prix</th>
-					<th>Quantité</th>
-					<th>Total</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for item in items %}
-					<tr>
-						<td>{{item.produit.nom}}</td>
-						<td>{{item.produit.prix}}</td>
-						<td>{{item.quantity}}</td>
-						<td>{{item.produit.prix * item.quantity}}</td>
-						<td>
-							<a href="{{path('panier_remove',{'id': item.produit.id})}}" class="btn btn-danger btn-sm">
-								<i class="fas fa-trash"></i>
-							</a>
-						</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan="3" class="text-right">Total :
-					</td>
-					<td>{{total}}</td>
-					<td></td>
-				</tr>
-			</tfoot>
-		</table>
-	{% else %}
-		<p>Surprise c'est vide !</p>
+		{% block javascripts %}
+			<script>
+				window.onload = () => {
+let modal = new Axentix.Modal('#modal-delete');
+let activer = document.querySelectorAll("[type=checkbox]")
+for (let bouton of activer) {
+bouton.addEventListener("click", function () {
+let xmlhttp = new XMLHttpRequest;
+xmlhttp.open("get", `/respo/Categories/activer/${
+this.dataset.id
+}`)
+xmlhttp.send()
+})
+}
 
-	{% endif %}
-
-{% endblock %}
+let supprimer = document.querySelectorAll(".modal-trigger")
+for (let bouton of supprimer) {
+bouton.addEventListener("click", function () {
+document.querySelector(".modal-footer a").href = `/Valider/add`
+document.querySelector(".modal-content").innerText
+})
+}
+}
+			</script>
+		{% endblock %}
+	</body>
+</html>

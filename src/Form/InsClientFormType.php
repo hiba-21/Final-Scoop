@@ -19,8 +19,10 @@ class InsClientFormType extends AbstractType
         $builder
             ->add('Nom')
             ->add('email')
+            ->add('numero')
             ->add('ville')
             ->add('code_postal')
+
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [

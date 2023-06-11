@@ -1,176 +1,182 @@
 
-div,span,form
-{margin: 0;
-padding: 0;
-border: 0;
-font-size: 100%;
-vertical-align: baseline;
-background: transparent;
+.nav{
+    display: flex;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+   justify-content: space-between;
+   margin-left: 20px;
+   margin-right: 20px;
+   align-items: center;
+
 }
-.navbar-brand img {
-    transition: opacity 0.3s, visibiliy 0.3s;
-    max-width:60px;
-}
-#breadcrumbs {
-    display: block;
+.blob{
     position: absolute;
-    z-index: 3;
-    color: #18bc9c;
-    letter-spacing: 0.5px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 1% 10%;
-}
-#breadcrumbs a {
-    color: #fff;
-}
-.header_agence {
-    display: block;
-    width: 100%;
-    position: relative;
-    background-size: contain;
-    height: auto;
-    overflow: hidden;
-    color: #666666;
-    background-repeat: no-repeat;
-    background-color: #f5f5f5;
-}.header_agence div.image {
-    display: block;
-    position: absolute;
-    height: 60vh;
-    overflow: hidden;
-    width: 100%;
-}
-.header_agence div.image-avis{
-    display: block;
-    position: absolute;
-    height: 60vh;
-    overflow: hidden;
-    width: 100%;
-}
-.image-avis {margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 50%;
-    vertical-align: baseline;
-    background: transparent;
-    border-style: none;
-}
-#page-header-site {
-    color: var(--bleuF);
-    padding: 5% 10% 3%;
-    box-sizing: border-box;
-    position: relative;
-    width: 100%;
-    max-width: 1650px;
-    min-width: 360px;
-    z-index: 2;
-}
-#page-header-site h1 {
-    margin-bottom: 1%;
-    border-left: 1.5px solid #fff;
-    color: #fff;
-    display: inline-block;
-    position: relative;
-    z-index: 2;
-}
-.header_agence #page-header-site h2 {
-    font-weight: 400;
-    text-align: left;
-   color: #283a5e;
-    letter-spacing: 0.5px;
-    display: block;
-    position: relative;
-    z-index: 2;
-}
-h1, h2, h3, h4, h5, h6 {
-    clear: both;
-    line-height: 1.4;
-    margin: 0 0 0.75em;
+    right: 13px;
+    z-index: -1;
+    width: 1000px;
+
     
 }
-body .page-content {
-    z-index: 2;
-    width: 80%;
-    margin: 0 auto;
-    margin-bottom: 5%;
-    max-width: 1400px;
-    min-width: 360px;
+h4{
+    color: rgb(65, 65, 64);
 }
-body .contenu {
-    display: block;
-    position: relative;
+a{
+    text-decoration: none;
+    color: black;
 }
-.page-content{
-    vertical-align: top;
-    padding: 1%;
-    background-color: #fff
+.nav:hover{
+    cursor: pointer;
 }
-
-.contenu h3 {
-    width: auto;
-    display: inline-block;
-    font-weight: 500;
+.logoImg{
+ width: 107px;
+ margin-left: 16px;
+height: 89px;
 }
-
-.page-content h3 {
-    border-left: 1px solid #333;
-    padding-left: 1%;
-    margin-bottom: 1%;
-    color: #333;
-    text-align: center;
-    font-size: 1.8rem;
-    font-family: 'Roboto', sans-serif;
-}
-#review_form_fields_2 label {
-    
-    letter-spacing: 0.5px;
-    color: rgb(115, 126, 126);
-    margin-top: 2%;
-    display: block;
-}
-
-
-#review_form_fields_2 .form-group input,#review_form_fields_2 .form-group textarea{
-    width: 100%;
-    margin-top: 2%;
-}
-input {
-    font-size: 12px !important;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    line-height: 1.66;
-
-}
-textarea {
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.9375rem;
-    font-weight: 400;
-    line-height: 1.66;
-    overflow: auto;
-}
-button {
-  
-    overflow: visible;
-    font-size: 0.9375rem;
-    font-weight: 400;
-    line-height: 1.66;
-    font-family: 'Roboto', sans-serif;
-}
-.btn-primary{
-   margin: 40px auto;
-    font-size: 16px;
-    text-transform: uppercase;
-    color: #d6d2d2;
-    background-color: #283a5e;
-    border-radius: 30px 30px 30px 30px;
-    font-family: "Roboto", Sans-serif;
-    font-weight: 600;
-    user-select: none;}
-.hi{
-        background-color: #dee2e66b;
+.item{
+    display: flex;
     margin: 20px;
-    padding: 5px;
+   justify-content: space-between;
+   padding: 30px;
+   font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 28px;
+   align-items: center;
+   margin-left: 700px;
+
 }
-    
+.item>div{
+    padding-right: 20px;
+}
+.item>a{
+    padding-right: 30px;
+    transition: transform 50ms ease-out;
    
+    
+   /* opacity: 0.7;*/
+}
+.item>a:hover{
+    transform: translateY(-5px);
+  
+}
+.ShoppingCart{
+    width: 54px;
+height: 50px;
+}
+.loginBtn{
+    width: 99px;
+  height: 49px;
+  font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 20px;
+  border: none;
+
+background: #fdc8d9;
+border-radius: 25px;
+}
+.loginBtn:hover{
+    cursor: pointer;
+        background: #bbb9bb ;
+}
+.signUpBtn{
+    width: 99px;
+  height: 49px;
+  font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 20px;
+  border: none;
+
+background: #fdc8d9;
+border-radius: 25px;
+}
+.signUpBtn:hover{
+    
+        cursor: pointer;
+        background: #bbb9bb ;
+}
+.navBtn:hover{
+    cursor: pointer;
+}
+.fromContainer{
+    display: grid;
+    grid-auto-columns: minmax(auto, 1fr);
+    -webkit-box-align: center;
+    align-items: center;
+    grid-template-areas: "col1 col2";
+}
+#name{
+    width:700px;
+    margin:0 auto;
+    margin-left: 100px;
+}
+.main{
+    width:120%;
+ 
+    border: 1px solid #f1f1f1;
+    background: #fff;
+   
+    
+    border-radius: 15px !important;
+    margin-left: -190px;
+    margin-top: -80px;
+}
+.ins{
+    width:100%;
+    padding: 30px;
+    border: 1px solid #f1f1f1;
+    background: #fff;
+    margin-top: -70px;
+    
+    border-radius: 15px !important;
+}
+.main:hover{
+    cursor: pointer !important;
+  background-color: #bebebe !important;
+  box-shadow: 0 4px 2px -2px gray !important;
+  transform: scale(1.02) !important;
+}
+.main h1 {
+    width: 38%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    color:rgb(65, 65, 64);
+    font-family: cursive;
+}
+.logPicture>img{
+    margin: 100px;
+    width: 620px;
+    margin-top: 20px;
+}
+.main h2{
+    color:rgb(65, 65, 64);
+    font-family: system-ui;
+}
+.page-contentcontenu{
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.form-group .eva2{
+    margin-left: 10px;
+}
+.hi{
+   
+    text-align: center;
+    width: auto;
+    justify-content: center;
+    background: #fff;
+    padding: 50px;
+    margin: 20px;
+    font-style: italic;
+    color: #0c0c0c;
+    position: relative;
+    background-color: #fcc8d8;
+    font-size: larger;
+}
